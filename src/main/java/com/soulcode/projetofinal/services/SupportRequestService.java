@@ -60,12 +60,12 @@ public class SupportRequestService {
         Type clientType = new Type();
         clientType.setId(1);
 
-        Person user1 = personRepository.findByEmail("mariaflowers@user.com");
+        Person user1 = personRepository.findByEmail("jonhlenon@user.com");
         if (user1 == null) {
             user1 = new Person();
-            user1.setName("Maria Flowers");
-            user1.setEmail("mariaflowers@user.com");
-            user1.setPassword("mariazinhaflor321");
+            user1.setName("Jonh Lenon");
+            user1.setEmail("jonhlenon@user.com");
+            user1.setPassword("jonhlenon567");
             user1.setType(clientType);
             personRepository.save(user1);
 
@@ -73,12 +73,12 @@ public class SupportRequestService {
             registerRequest("Printer problem", "The printer won't print", 2, LocalDateTime.now(), itDepartment, awaitingStatus, null, user1);
         }
 
-        Person user2 = personRepository.findByEmail("carlosrocha@user.com");
+        Person user2 = personRepository.findByEmail("marialemos@user.com");
         if (user2 == null) {
             user2 = new Person();
-            user2.setName("Carlos Rocha");
-            user2.setEmail("carlosrocha@user.com");
-            user2.setPassword("carlosrocha091413");
+            user2.setName("Maria Lemos");
+            user2.setEmail("marialemos@user.com");
+            user2.setPassword("marialemos85412");
             user2.setType(clientType);
             personRepository.save(user2);
 

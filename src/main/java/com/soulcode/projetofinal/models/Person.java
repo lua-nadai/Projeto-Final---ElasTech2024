@@ -18,6 +18,9 @@ public class Person {
     @Column
     private String password;
 
+    @Column
+    private String resetToken;
+
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
@@ -60,5 +63,13 @@ public class Person {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
     }
 }

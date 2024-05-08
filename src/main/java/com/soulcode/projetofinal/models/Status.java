@@ -12,6 +12,9 @@ public class Status {
     @Column
     private String name;
 
+    @Column
+    private String statusName;
+
     public int getId() {
         return id;
     }
@@ -27,5 +30,7 @@ public class Status {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
 

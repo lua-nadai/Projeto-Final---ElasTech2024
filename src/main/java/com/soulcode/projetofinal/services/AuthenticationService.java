@@ -3,6 +3,8 @@ package com.soulcode.projetofinal.services;
 import com.soulcode.projetofinal.models.Person;
 import com.soulcode.projetofinal.models.Type;
 import com.soulcode.projetofinal.repositories.PersonRepository;
+import com.soulcode.projetofinal.repositories.StatusRepository;
+import com.soulcode.projetofinal.repositories.SupportRequestRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,9 @@ import java.util.UUID;
 
 @Service
 public class AuthenticationService {
+
+    @Autowired
+    private SupportRequestRepository supportRequestRepository;
 
     @Autowired
     private PersonRepository personRepository;
@@ -44,8 +49,6 @@ public class AuthenticationService {
             user.setResetToken(resetToken);
             personRepository.save(user);
             String resetLink = request.getRequestURL().toString().replace("reset-password", "password-reset") + "?token=" + resetToken;
-            // Aqui você precisaria chamar um serviço de e-mail para enviar o e-mail
-            // Exemplo: emailService.sendResetPasswordEmail(user.getEmail(), resetLink);
         }
     }
 
@@ -67,6 +70,18 @@ public class AuthenticationService {
     public boolean isResetTokenValid(String token) {
         Person user = personRepository.findByResetToken(token);
         return user != null;
+    }
+
+    public int getOpenRequestsCount() {
+        return supportRequestRepository.countOpenRequests();
+    }
+
+    public int getInProgressRequestsCount() {
+        return supportRequestRepository.countInProgressRequests();
+    }
+
+    public int getWaitingRequestsCount() {
+        return supportRequestRepository.countWaitingRequests();
     }
 }
 

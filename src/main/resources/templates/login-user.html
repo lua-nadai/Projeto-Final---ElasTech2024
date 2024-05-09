@@ -14,10 +14,10 @@
     <div>
         <ul>
             <li>
-                <a href="#">Entrar</a>
+                <a href="/login-user">Entrar</a>
             </li>
             <li>
-                <a href="#">Cadastrar</a>
+                <a href="/register-user">Cadastrar</a>
             </li>
             <li>
                 <a href="#">Sobre nós</a>
@@ -28,8 +28,10 @@
 
 <div>
     <div class="container">
-        <h2>Bem-Vindo</h2>
+        
         <form action="/login-user" method="POST">
+            <div class="form-login">
+                <h2>Bem-Vindo</h2>
             <div class="input-group">
                 <label>E-mail:</label>
                 <input type="text" id="email" name="email" th:value="${email}" required>
@@ -42,6 +44,7 @@
                 <a href="#" class="button">Criar uma conta</a>
                 <br>
                 <br>
+            </div>
         </form>
     </div>
 </div>

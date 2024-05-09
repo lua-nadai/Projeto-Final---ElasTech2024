@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulDesk</title>
-    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <form action="/register-user" method="POST">
+    <nav>
+        <div class="brand">
+            <h1>SoulDesk</h1>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="/login-user">Entrar</a>
+                </li>
+                <li>
+                    <a href="/register-user">Cadastrar</a>
+                </li>
+                <li>
+                    <a href="#">Sobre nós</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    
+    <form action="/register-user" method="POST" >
+        
+        <div class="form-register">
+        
         <label>Nome:</label>
         <input type="text" name="name" id="name" required>
         <label>Senha:</label>
@@ -18,7 +41,23 @@
         <input type="email" name="email" id="email" required>
         <label>Tipo:</label>
         <input type="text" name="typeId" id="type" required>
+        <br>
         <button type="submit">Cadastrar</button>
+    </div>
     </form>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SoulCode Academy #ElasTech</p>
+            <div class="sponsors">
+                <a href="#">SOUL</a>
+                <a href="#">PagBank</a>
+                <a href="#">@Github</a>
+                <a href="#">@Github</a>
+                <a href="#">@Github</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>

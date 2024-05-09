@@ -79,6 +79,21 @@ h2 {
 form {
     max-width: 500px;
     margin: 0 auto;
+
+    .form-register, .form-login {
+        background-color: #f4f4f4; /* Cor de fundo do quadrado */
+        width: fit-content; /* Define a largura do elemento para se ajustar ao conteúdo */
+        margin: 20px auto 20px; /* Margem superior e inferior de 20 pixels e centraliza horizontalmente */
+        padding: 20px 60px; /* Espaçamento interno aumentado (20px acima e abaixo, 60px à direita e à esquerda) */
+        border-radius: 5px; /* Borda arredondada */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+        display: flex; /* Usar flexbox */
+        flex-direction: column; /* Colocar os itens em coluna */
+        align-items: center; /* Centralizar verticalmente */
+        justify-content: center; /* Centralizar horizontalmente */
+        text-align: center;
+    }
+
 }
 
 .input-group {
@@ -100,7 +115,7 @@ input[type="password"] {
 }
 
 button[type="submit"] {
-    background-color: #007bff;
+    background-color: var(--p4);
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -109,7 +124,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: var(--p5);
 }
 
 /* Footer */

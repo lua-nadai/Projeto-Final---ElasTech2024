@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SoulDesk</title>
@@ -7,11 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 <header class="header">
     <img class="img" src="imagens/souldesk.png">
-    <p>Olá,</p>
+    <p>Bem-vindo, <span th:text="${name}"></span>!</p>
     <button class="button">Adicionar Chamados</button>
     <button class="button-sair">Sair</button>
 </header>

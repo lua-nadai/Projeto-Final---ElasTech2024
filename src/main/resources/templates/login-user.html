@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulDesk</title>
-    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 <nav>
@@ -26,25 +26,25 @@
     </div>
 </nav>
 
-<main>
+<div>
     <div class="container">
         <h2>Bem-Vindo</h2>
-        <form action="#">
+        <form action="/login-user" method="POST">
             <div class="input-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
+                <label>E-mail:</label>
+                <input type="text" id="email" name="email" th:value="${email}" required>
             </div>
             <div class="input-group">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
+                <label>Senha:</label>
+                <input type="password" id="password" name="password" th:value="${password}" required>
             </div>
-            <a href="#" class="button">Entrar</a>
+            <button type="submit">Entrar</button>
                 <a href="#" class="button">Criar uma conta</a>
                 <br>
                 <br>
         </form>
     </div>
-</main>
+</div>
 
 <footer>
     <div class="container">

@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/administrators")
+@RequestMapping("/admin")
 public class AdministratoController {
 
     @Autowired
@@ -74,7 +74,7 @@ public class AdministratoController {
         return technicianController.changeRequestStatus(id, status, session);
     }
 
-    @GetMapping("/user-login")
+    @GetMapping("/login-user")
     public String userLoginPage() {
         return userController.userLoginPage();
     }
@@ -84,7 +84,7 @@ public class AdministratoController {
         return userController.openRequestPage();
     }
 
-    @GetMapping("/user-registration")
+    @GetMapping("/register-user")
     public String createUser() {
         return userController.createUser();
     }
@@ -110,7 +110,7 @@ public class AdministratoController {
 
     @PostMapping("/add-department")
     public String addDepartment(@RequestParam String departmentName) {
-        return "redirect:/administrators/dashboard";
+        return "redirect:/admin/dashboard";
     }
 
     @GetMapping("/dashboard")
@@ -119,6 +119,6 @@ public class AdministratoController {
         model.addAttribute("inProgressRequestsCount", administratoService.getInProgressRequestsCount());
         model.addAttribute("waitingRequestsCount", administratoService.getWaitingRequestsCount());
 
-        return "administrator-dashboard";
+        return "admin-dashboard";
     }
 }

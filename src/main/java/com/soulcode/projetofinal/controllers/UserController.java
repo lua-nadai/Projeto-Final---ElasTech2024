@@ -38,9 +38,9 @@ public class UserController {
         this.supportRequestRepository = supportRequestRepository;
     }
 
-    @GetMapping("/user-login")
+    @GetMapping("/login-user")
     public String userLoginPage() {
-        return "user-login";
+        return "login-user";
     }
 
     @GetMapping("/open-request")
@@ -48,9 +48,9 @@ public class UserController {
         return "open-request";
     }
 
-    @GetMapping("/user-registration")
+    @GetMapping("/register-user")
     public String createUser() {
-        return "user-registration";
+        return "register-user";
     }
 
     @GetMapping("/user-request-details/{Id}")

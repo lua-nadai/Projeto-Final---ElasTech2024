@@ -54,9 +54,11 @@ public class AuthenticationController {
 
             // Redirect to the appropriate page based on the user type (technician or client)
             if (userType == 1) {
-                return "redirect:/user-page?name=" + user.getName();
-            } else {
+                return "redirect:/admin?name=" + user.getName();
+            } if (userType == 2) {
                 return "redirect:/technician-page?name=" + user.getName();
+            } else {
+                return "redirect:/user-page?name=" + user.getName();
             }
         } else if (user != null && user.getEmail().equals(email)) {
             model.addAttribute("error", "Incorrect password");

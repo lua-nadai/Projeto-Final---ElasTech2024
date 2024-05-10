@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulDesk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 <nav>
     <div class="brand">
-        <h1>SoulDesk</h1>
+        <a href="/"><h1>SoulDesk</h1></a>
     </div>
     <div>
         <ul>
@@ -41,7 +44,7 @@
                 <input type="password" id="password" name="password" th:value="${password}" required>
             </div>
             <button type="submit">Entrar</button>
-                <a href="#" class="button">Criar uma conta</a>
+                <a href="/register-user" class="button">Criar uma conta</a>
                 <br>
                 <br>
             </div>
@@ -55,6 +58,7 @@
             <a href="/about">Sobre nós</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu ultricies libero. Proin nec magna rutrum, cursus lorem vitae, rhoncus nisl. Etiam est ipsum, consectetur a ex sed, tempus luctus orci.</p>
         </div>
+        <span></span>
         <div class="footer-content">
             <div class="sponsors">
                 <h2>Patrocinadores</h2>

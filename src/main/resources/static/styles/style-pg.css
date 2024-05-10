@@ -52,7 +52,6 @@
 .h1{
     color:#328C8D;
     font-size:2ren;
-    font-family: "Public Sans", sans-serif;
 }
 
 .section{
@@ -65,16 +64,6 @@
 
 }
 
-.table{
-    background:white;
-    width:100%;
-    margin:1rem;
-    padding:1rem;
-    border-radius:10px;
-    border-collapse: collapse;
-    font-family: "Public Sans", sans-serif;
-
-}
 
 .titulo{
     display:flex;

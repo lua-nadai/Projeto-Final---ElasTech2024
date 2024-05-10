@@ -16,17 +16,27 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--white);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background-color: var(--white);
+    font-family: "Blinker", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+    list-style: none;
+    text-decoration: none;
+}
+
+a, :link, :visited {
+    text-decoration: none;
 }
 
 /* Navbar */
 nav {
+    height: 70px;
     background-color: var(--p2);
     color: var(--p5);
     box-shadow: rgba(0,0,0, .20) 0px -2px 10px 0px;
@@ -34,18 +44,19 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .2em 2em;
+    padding: 0 2em;
 
-    .brand {
+    .brand a,
+    .brand :link,
+    .brand :visited {
+        color: var(--p5);
         font-size: 1.2em;
-        text-decoration: none;
     }
 
     ul {
         display: flex;
-        list-style: none;
+        align-items: center;
         margin-right: 1em;
-        text-decoration: none;
 
         a {
             background-color: var(--p4);
@@ -60,8 +71,21 @@ nav {
 
         li a, :link, :visited {
             color: #000;
-            text-decoration: none;
             padding: .4em .6em;
+        }
+    }
+
+    .nav-info {
+        width: 400px;
+        display: flex;
+        justify-content: space-around;
+
+        h2 {
+            margin: 0;
+        }
+
+        a {
+            padding: 10px 25px;
         }
     }
 }
@@ -94,6 +118,9 @@ form {
         text-align: center;
     }
 
+    a {
+        margin-top: 5px;
+    }
 }
 
 .input-group {
@@ -127,6 +154,69 @@ button[type="submit"]:hover {
     background-color: var(--p5);
 }
 
+/* Page Home */
+#home-section {
+    width: 100vw;
+    height: calc(100vh - 70px - 110px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .home-container {
+        width: 70vw;
+        display: flex;
+        justify-content: space-around;
+
+        @media (max-height: 600px) {
+            width: 800px;
+
+        }
+
+         .home-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 500px;
+
+            h1 {
+                font-size: 2em;
+                color: var(--p5);
+                margin: 0;
+            }
+
+            p {
+                font-size: 1.5em;
+            }
+
+            a {
+                background-color: var(--p4);
+                color: var(--white);
+                width: 100%;
+                border-radius: 10px;
+                padding: 10px 0;
+                text-align: center;
+                font-size: 1.2em;
+            }
+
+            a:hover {
+                background-color: var(--p5);
+            }
+         }
+
+        img {
+            width: 400px;
+            height: 400px;
+        }
+    }
+}
+
+/* Page Technical */
+
+#technical-section {
+
+}
+
 /* Footer */
 
 footer {
@@ -147,29 +237,48 @@ footer {
         margin: 0;
     }
 
-<<<<<<< HEAD
-.sponsors a:hover {
-    color: #007bff;
-}
-=======
+    @media (max-height: 600px) {
+
+        .footer-about {
+            width: 80px;
+        }
+
+        .footer-content{
+            width: 100px;
+        }
+
+        .git-list ul {
+            padding-left: 20px;
+        }
+
+        .git-list-center {
+            margin: 5px!important;
+        }
+    }
+
+
     .footer-container {
         width: 100vw;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
 
         .footer-about {
             width: 50vw;
             height: 90px;
-            border-right: 1px solid var(--white);
             padding: 0 10px;
             text-align: center;
 
             a, :link, :visited {
                 color: var(--white);
-                text-decoration: none;
                 font-size: 1.2em;
-                font-weight: bold;
+                font-weight: semi-bold;
+            }
+
+            p {
+                margin-top: 10px;
+                font-weight: 300;
             }
         }
 
@@ -183,6 +292,7 @@ footer {
                 h2 {
                     font-size: 1.2em;
                     margin: 0;
+                    font-weight: normal;
                 }
 
                 div {
@@ -201,29 +311,26 @@ footer {
                 align-items: center;
 
                 ul {
-                    list-style: none;
-                    text-decoration: none;
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
+                    margin: 0;
 
                     li a, :link, :visited {
                         width: 120px;
                         color: var(--white);
-                        text-decoration: none;
                     }
                 }
 
                 .git-list-center {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                    margin: 10px 5px;
+                    margin: 10px;
                 }
             }
          }
+
+         span {
+            height: 70px;
+            border: 0.5px solid var(--white);
+         }
     }
 }
->>>>>>> f0accb1a359e5f5174c917999573bac7676c00a0

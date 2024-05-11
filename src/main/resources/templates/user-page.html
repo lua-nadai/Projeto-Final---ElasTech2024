@@ -95,14 +95,13 @@
                         <th>Descrição</th>
                         <th>Status</th>
                     </tr>
-                    <tr th:each="request, row : ${availableRequests}">
-                        <td th:text="${request.startDate}"></td>
-                        <td th:text="${request.title}"></td>
-                        <td th:text="${request.department.name}"></td>
-                        <td th:text="${request.priority}"></td>
-                        <td th:text="${request.description}"></td>
-                        <td th:text="${request.status.name}"></td>
-<!--                        <td><a th:href="@{/user-request-details/{id}(id=${request.id})}">Detalhes</a></td>-->
+                    <tr th:each="supportRequest, row: ${availableRequests}">
+                        <td th:text="${supportRequest.startDate}"></td>
+                        <td th:text="${supportRequest.title}"></td>
+                        <td th:text="${supportRequest.department.name}"></td>
+                        <td th:text="${supportRequest.priority}"></td>
+                        <td th:text="${supportRequest.description}"></td>
+                        <td th:text="${supportRequest.status.name}"></td>
                     </tr>
                     </tbody>
                 </table>

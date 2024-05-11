@@ -2,11 +2,13 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulDesk</title>
-    <link rel="stylesheet" href="../static/styles/style-pg.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
@@ -19,7 +21,59 @@
             <h2>Olá, <span th:text="${name}"></span>!</h2>
             <ul>
                 <li>
-                    <a href="#">Criar<br>Chamado</a>
+                    <!-- Button trigger modal -->
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal">
+                        Criar<br>Chamado
+                    </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 id="exampleModalLabel">Cadastrar Novo Chamado</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form" action="/user-request-details" method="post">
+                                        <div class="infos-chamado">
+                                            <label>Solicitante: <span th:text="${name}"></span></label>
+                                            <label>Setor:
+                                                <select class="select" id="department_id" name="department">
+                                                    <option value="1">Financeiro</option>
+                                                    <option value="2">Operacional</option>
+                                                    <option value="3">Recursos Humanos</option>
+                                                    <option value="4">Administrativo</option>
+                                                    <option value="5">Comercial</option>
+                                                    <option value="6">Tecnologia de Informação</option>
+                                                </select>
+                                            </label>
+                                            <div class="input-prioridade">
+                                                <label>Grau de prioridade:</label>
+                                                <select class="select" id="priority" name="priority">
+                                                    <option selected>Selecione</option>
+                                                    <option value="1">Baixo</option>
+                                                    <option value="2">Médio</option>
+                                                    <option value="3">Alto</option>
+                                                    <option value="4">Urgente</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="container-descricao">
+                                            <label>Título:</label>
+                                            <input type="text" id="title" name="title" th:value="${title}" required>
+                                            <label class="descricao">Descrição: </label>
+                                            <textarea class="textarea" id="description" name="description"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn-confirm">Confirmar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="/">Sair</a>
                 </li>
             </ul>

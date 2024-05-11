@@ -8,50 +8,53 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<nav>
-    <div class="brand">
-        <a href="/"><h1>SoulDesk</h1></a>
-    </div>
-    <div>
-        <ul>
-            <li>
-                <a href="/login-user">Entrar</a>
-            </li>
-            <li>
-                <a href="/register-user">Cadastrar</a>
-            </li>
-            <li>
-                <a href="/about">Sobre nós</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<div>
-    <div class="container">
-        
-        <form action="/login-user" method="POST">
-            <div class="form-login">
-                <h2>Bem-Vindo</h2>
-            <div class="input-group">
-                <label>E-mail:</label>
-                <input type="text" id="email" name="email" th:value="${email}" required>
-            </div>
-            <div class="input-group">
-                <label>Senha:</label>
-                <input type="password" id="password" name="password" th:value="${password}" required>
-            </div>
-            <button type="submit">Entrar</button>
-                <a href="/register-user" class="button">Criar uma conta</a>
-                <br>
-                <br>
-            </div>
-        </form>
-    </div>
-</div>
-
+<header>
+    <nav>
+        <div class="brand">
+            <a href="/"><h1>SoulDesk</h1></a>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a href="/login-user">Entrar</a>
+                </li>
+                <li>
+                    <a href="/register-user">Cadastrar</a>
+                </li>
+                <li>
+                    <a href="/about">Sobre nós</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+    <section>
+        <div>
+            <form action="/login-user" method="POST">
+                <div class="form-login">
+                    <h2>Bem-Vindo</h2>
+                    <div class="input-group">
+                        <label>E-mail:</label>
+                        <input type="text" id="email" name="email" th:value="${email}" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Senha:</label>
+                        <input type="password" id="password" name="password" th:value="${password}" required>
+                    </div>
+                    <button type="submit">Entrar</button>
+                    <a href="/register-user" class="button">Criar uma conta</a>
+                    <br>
+                    <br>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
 <footer>
     <div class="footer-container">
         <div class="footer-about">

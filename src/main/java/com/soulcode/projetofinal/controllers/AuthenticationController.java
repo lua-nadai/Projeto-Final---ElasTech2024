@@ -50,7 +50,7 @@ public class AuthenticationController {
 
             // Create a session and set the user as logged in, storing the logged-in user's information in the cache
             HttpSession session = request.getSession();
-            session.setAttribute("loggedInUser", user);
+            session.setAttribute("loggedUser", user);
 
             // Redirect to the appropriate page based on the user type (technician or client)
             if (userType == 1) {

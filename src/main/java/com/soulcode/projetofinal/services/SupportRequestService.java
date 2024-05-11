@@ -27,7 +27,7 @@ public class SupportRequestService {
 
     public Person getLoggedTechnician(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        return (Person) session.getAttribute("loggedInUser");
+        return (Person) session.getAttribute("loggedUser");
     }
 
     public SupportRequest registerRequest(String title, String description, int priority, LocalDateTime startDate,

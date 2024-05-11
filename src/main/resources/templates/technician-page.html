@@ -69,9 +69,9 @@
                         <tr th:each="supportRequest, row : ${requestsInProcess}">
                             <td th:text="${supportRequest.startDate}"></td>
                             <td th:text="${supportRequest.title}"></td>
-                            <td th:text="${supportRequest.department}"></td>
+                            <td th:text="${supportRequest.department.name}"></td>
                             <td th:text="${supportRequest.priority}"></td>
-                            <td th:text="${supportRequest.description.name}"></td>
+                            <td th:text="${supportRequest.description}"></td>
                             <td th:text="${supportRequest.status.name}"></td>
                         </tr>
                         </tbody>

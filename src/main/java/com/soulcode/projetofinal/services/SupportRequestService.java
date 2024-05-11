@@ -25,7 +25,7 @@ public class SupportRequestService {
     @Autowired
     private StatusRepository statusRepository;
 
-    public Person isTechnicianLogged(HttpServletRequest request) {
+    public Person getLoggedTechnician(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return (Person) session.getAttribute("loggedInUser");
     }
@@ -46,7 +46,7 @@ public class SupportRequestService {
     }
 
     public void registerFakeRequests(HttpServletRequest request) {
-        Person technicianLogged = isTechnicianLogged(request);
+        Person technicianLogged = getLoggedTechnician(request);
 
         Department adminDepartment = new Department();
         adminDepartment.setId(1);
@@ -58,7 +58,7 @@ public class SupportRequestService {
         awaitingStatus.setId(1);
 
         Type clientType = new Type();
-        clientType.setId(1);
+        clientType.setId(3);
 
         Person user1 = personRepository.findByEmail("jonhlenon@user.com");
         if (user1 == null) {

@@ -1,7 +1,40 @@
-use projeto_final;
+USE projeto_final;
 
-insert into type (name) values('Administrador'),('Técnico'),('Cliente');
+INSERT INTO type (name)
+SELECT 'Administrador' WHERE NOT EXISTS (SELECT 1 FROM type WHERE name = 'Administrador');
 
-insert into department (name) values ('Financeiro'),('Operacional'),('Recursos Humanos'),('Administrativo'),('Comercial'),('Tecnologia da Informação');
+INSERT INTO type (name)
+SELECT 'Técnico' WHERE NOT EXISTS (SELECT 1 FROM type WHERE name = 'Técnico');
 
-insert into status (name) values ('Aguardando Técnico'),('Em atendimento'),('Escalado para outro setor'),('Finalizado');
+INSERT INTO type (name)
+SELECT 'Cliente' WHERE NOT EXISTS (SELECT 1 FROM type WHERE name = 'Cliente');
+
+INSERT INTO department (name)
+SELECT 'Financeiro' WHERE NOT EXISTS (SELECT 1 FROM department WHERE name = 'Financeiro');
+
+INSERT INTO department (name)
+SELECT 'Operacional' WHERE NOT EXISTS (SELECT 1 FROM department WHERE name = 'Operacional');
+
+INSERT INTO department (name)
+SELECT 'Recursos Humanos' WHERE NOT EXISTS (SELECT 1 FROM department WHERE name = 'Recursos Humanos');
+
+INSERT INTO department (name)
+SELECT 'Administrativo' WHERE NOT EXISTS (SELECT 1 FROM department WHERE name = 'Administrativo');
+
+INSERT INTO department (name)
+SELECT 'Comercial' WHERE NOT EXISTS (SELECT 1 FROM department WHERE name = 'Comercial');
+
+INSERT INTO department (name)
+SELECT 'Tecnologia da Informação' WHERE NOT EXISTS (SELECT 1 FROM department WHERE name = 'Tecnologia da Informação');
+
+INSERT INTO status (name)
+SELECT 'Aguardando Técnico' WHERE NOT EXISTS (SELECT 1 FROM status WHERE name = 'Aguardando Técnico');
+
+INSERT INTO status (name)
+SELECT 'Em atendimento' WHERE NOT EXISTS (SELECT 1 FROM status WHERE name = 'Em atendimento');
+
+INSERT INTO status (name)
+SELECT 'Escalado para outro setor' WHERE NOT EXISTS (SELECT 1 FROM status WHERE name = 'Escalado para outro setor');
+
+INSERT INTO status (name)
+SELECT 'Finalizado' WHERE NOT EXISTS (SELECT 1 FROM status WHERE name = 'Finalizado');

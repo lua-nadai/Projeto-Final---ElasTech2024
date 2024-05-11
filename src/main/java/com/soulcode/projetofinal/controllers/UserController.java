@@ -107,9 +107,9 @@ public class UserController {
         List<SupportRequest> availableRequests = new ArrayList<>();
         List<SupportRequest> openRequests = new ArrayList<>();
 
-        for (SupportRequest call : allRequests) {
-            int statusId = call.getStatus().getId();
-            (statusId == 1 ? availableRequests : openRequests).add(call);
+        for (SupportRequest request : allRequests) {
+            int statusId = request.getStatus().getId();
+            (statusId == 1 ? availableRequests : openRequests).add(request);
         }
 
         model.addAttribute("availableCalls", allRequests);

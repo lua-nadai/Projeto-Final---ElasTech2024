@@ -74,8 +74,8 @@ public class TechnicianController {
     public String changeRequestStatus(@RequestParam int id, @RequestParam int status, HttpSession session) {
 
         SupportRequest request = supportRequestService.getRequestById(id);
-        Person loggedTechnician = (Person) session.getAttribute("loggedInUser");
-        session.setAttribute("loggedTechnicianName", loggedTechnician.getName());
+        Person technicianLogged = (Person) session.getAttribute("loggedInUser");
+        session.setAttribute("technicianLoggedName", technicianLogged.getName());
 
         Status updatedStatus = null;
 
@@ -83,15 +83,15 @@ public class TechnicianController {
             case 1 -> updatedStatus = statusRepository.findById(2).orElse(null); // In database, id 2 = In progress
             case 2 -> updatedStatus = statusRepository.findById(3).orElse(null); // In database, id 3 = Escalated to another department
             case 3 -> updatedStatus = statusRepository.findById(4).orElse(null); // In database, id 4 = Completed
-            default -> { return "redirect:/technician-page?name=" + loggedTechnician.getName();}
+            default -> { return "redirect:/technician-page?name=" + technicianLogged.getName();}
         }
 
         if (updatedStatus != null) {
             request.setStatus(updatedStatus);
-            request.setTechnician(loggedTechnician);
+            request.setTechnician(technicianLogged);
             supportRequestService.saveRequest(request);
 
-            return "redirect:/technician-page?name=" + loggedTechnician.getName();
+            return "redirect:/technician-page?name=" + technicianLogged.getName();
         } else {
             return "redirect:/technician-page";
         }

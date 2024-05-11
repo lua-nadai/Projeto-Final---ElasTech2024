@@ -25,7 +25,7 @@ public class SupportRequestService {
     @Autowired
     private StatusRepository statusRepository;
 
-    public Person getLoggedTechnician(HttpServletRequest request) {
+    public Person isTechnicianLogged(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return (Person) session.getAttribute("loggedInUser");
     }
@@ -46,7 +46,7 @@ public class SupportRequestService {
     }
 
     public void registerFakeRequests(HttpServletRequest request) {
-        Person loggedTechnician = getLoggedTechnician(request);
+        Person technicianLogged = isTechnicianLogged(request);
 
         Department adminDepartment = new Department();
         adminDepartment.setId(1);

@@ -100,5 +100,7 @@ public class SupportRequestService {
     public List<SupportRequest> getRequestsWithStatus(int status) {
         return supportRequestRepository.findByStatusId(status);
     }
+
+
 }
 

@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -102,18 +103,18 @@ public class UserController {
     }
 
     @GetMapping("/user-page")
-    public String userPage(@RequestParam("name") String name, Model model) {
+    public String userPage(Model model, HttpSession httpSession) {
 
-        List<SupportRequest> allRequests = supportRequestRepository.findAll();
-        List<SupportRequest> availableRequests = new ArrayList<>();
+        Person loggedUser = (Person) httpSession.getAttribute("loggedUser");
 
-        for (SupportRequest request : allRequests) {
-            int statusId = request.getStatus().getId();
-            (statusId == 1 ? availableRequests : allRequests).add(request);
+        if (loggedUser==null){
+            return "redirect:login";
         }
 
-        model.addAttribute("availableRequests", availableRequests);
-        model.addAttribute("name", name);
+        List<SupportRequest> userRequests = supportRequestRepository.findByUserId(loggedUser.getId());
+
+        model.addAttribute("userRequests", userRequests);
+        model.addAttribute("name", loggedUser.getName());
 
         return "user-page";
     }

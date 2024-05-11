@@ -74,7 +74,7 @@ public class TechnicianController {
     public String changeRequestStatus(@RequestParam int id, @RequestParam int status, HttpSession session) {
 
         SupportRequest request = supportRequestService.getRequestById(id);
-        Person technicianLogged = (Person) session.getAttribute("loggedInUser");
+        Person technicianLogged = (Person) session.getAttribute("loggedUser");
         session.setAttribute("technicianLoggedName", technicianLogged.getName());
 
         Status updatedStatus = null;

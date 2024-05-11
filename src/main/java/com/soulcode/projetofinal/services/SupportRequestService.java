@@ -27,7 +27,7 @@ public class SupportRequestService {
 
     public Person isTechnicianLogged(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        return (Person) session.getAttribute("loggedInUser");
+        return (Person) session.getAttribute("loggedUser");
     }
 
     public SupportRequest registerRequest(String title, String description, int priority, LocalDateTime startDate,
@@ -58,7 +58,7 @@ public class SupportRequestService {
         awaitingStatus.setId(1);
 
         Type clientType = new Type();
-        clientType.setId(1);
+        clientType.setId(3);
 
         Person user1 = personRepository.findByEmail("jonhlenon@user.com");
         if (user1 == null) {

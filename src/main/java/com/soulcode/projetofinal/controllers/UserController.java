@@ -56,9 +56,10 @@ public class UserController {
     @GetMapping("/user-request-details/{Id}")
     public String userRequestDetails(@PathVariable("Id") int id, Model model, HttpSession session) {
         SupportRequest request = supportRequestService.getRequestById(id);
-        Person loggedUser = (Person) session.getAttribute("loggedInUser");
+        Person loggedUser = (Person) session.getAttribute("loggedUser");
         model.addAttribute("request", request);
         model.addAttribute("name", loggedUser.getName());
+
         return "user-request-details";
     }
 
@@ -69,7 +70,7 @@ public class UserController {
                               @RequestParam("department") Department department,
                               HttpSession session) {
 
-        Person loggedUser = (Person) session.getAttribute("loggedInUser");
+        Person loggedUser = (Person) session.getAttribute("loggedUser");
 
         request = new SupportRequest();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -98,9 +99,9 @@ public class UserController {
         List<SupportRequest> availableRequests = new ArrayList<>();
         List<SupportRequest> openRequests = new ArrayList<>();
 
-        for (SupportRequest call : allRequests) {
-            int statusId = call.getStatus().getId();
-            (statusId == 1 ? availableRequests : openRequests).add(call);
+        for (SupportRequest request : allRequests) {
+            int statusId = request.getStatus().getId();
+            (statusId == 1 ? availableRequests : openRequests).add(request);
         }
 
         model.addAttribute("availableCalls", allRequests);

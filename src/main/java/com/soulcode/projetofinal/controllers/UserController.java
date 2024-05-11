@@ -106,15 +106,13 @@ public class UserController {
 
         List<SupportRequest> allRequests = supportRequestRepository.findAll();
         List<SupportRequest> availableRequests = new ArrayList<>();
-        List<SupportRequest> openRequests = new ArrayList<>();
 
         for (SupportRequest request : allRequests) {
             int statusId = request.getStatus().getId();
-            (statusId == 1 ? availableRequests : openRequests).add(request);
+            (statusId == 1 ? availableRequests : allRequests).add(request);
         }
 
-        model.addAttribute("availableCalls", allRequests);
-        model.addAttribute("openCalls", openRequests);
+        model.addAttribute("availableRequests", availableRequests);
         model.addAttribute("name", name);
 
         return "user-page";

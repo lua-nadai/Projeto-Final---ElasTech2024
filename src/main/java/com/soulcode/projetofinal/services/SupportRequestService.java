@@ -69,8 +69,8 @@ public class SupportRequestService {
             user1.setType(clientType);
             personRepository.save(user1);
 
-            registerRequest("Monitor issue", "The monitor won't turn on", 1, LocalDateTime.now(), adminDepartment, awaitingStatus, null, user1);
-            registerRequest("Printer problem", "The printer won't print", 2, LocalDateTime.now(), itDepartment, awaitingStatus, null, user1);
+            registerRequest("Problema no monitor", "O monitor não liga", 2, LocalDateTime.now(), adminDepartment, awaitingStatus, null, user1);
+            registerRequest("Problema na impressora", "A impressora não está imprimindo", 1, LocalDateTime.now(), itDepartment, awaitingStatus, null, user1);
         }
 
         Person user2 = personRepository.findByEmail("marialemos@user.com");
@@ -82,9 +82,9 @@ public class SupportRequestService {
             user2.setType(clientType);
             personRepository.save(user2);
 
-            registerRequest("Keyboard issue", "Some keys are not working", 3, LocalDateTime.now(), adminDepartment, awaitingStatus, null, user2);
-            registerRequest("Mouse problem", "The mouse is freezing", 1, LocalDateTime.now(), itDepartment, awaitingStatus, null, user2);
-            registerRequest("Network connection issue", "Can't connect to the internet", 2, LocalDateTime.now(), itDepartment, awaitingStatus, null, user2);
+            registerRequest("Problema no teclado", "Teclado não funciona", 3, LocalDateTime.now(), adminDepartment, awaitingStatus, null, user2);
+            registerRequest("Problema na conexão de rede", "A conexão caiu", 4, LocalDateTime.now(), itDepartment, awaitingStatus, null, user2);
+            registerRequest("Problema no mouse", "O lado direito do mouse não funciona", 1, LocalDateTime.now(), itDepartment, awaitingStatus, null, user2);
         }
     }
 

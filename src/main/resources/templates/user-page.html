@@ -41,13 +41,13 @@
                         <th>Descrição</th>
                         <th>Status</th>
                     </tr>
-                    <tr>
-                        <td>XXXXXX</td>
-                        <td>XXXXXX</td>
-                        <td>XXXXXX</td>
-                        <td>XXXXXX</td>
-                        <td>XXXXXXXXXXXXXXX</td>
-                        <td>XXXXXX</td>
+                    <tr th:each="supportRequest, row: ${availableRequests}">
+                        <td th:text="${supportRequest.startDate}"></td>
+                        <td th:text="${supportRequest.title}"></td>
+                        <td th:text="${supportRequest.department.name}"></td>
+                        <td th:text="${supportRequest.priority}"></td>
+                        <td th:text="${supportRequest.description}"></td>
+                        <td th:text="${supportRequest.status.name}"></td>
                     </tr>
                     </tbody>
                 </table>

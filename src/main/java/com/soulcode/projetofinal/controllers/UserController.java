@@ -62,6 +62,15 @@ public class UserController {
         return "user-request-details";
     }
 
+    @GetMapping("/user-request-details")
+    public String getRequestDetailsPage(@RequestParam("Id") int id, Model model, HttpSession session) {
+        SupportRequest request = supportRequestService.getRequestById(id);
+        Person loggedUser = (Person) session.getAttribute("loggedInUser");
+        model.addAttribute("request", request);
+        model.addAttribute("name", loggedUser.getName());
+        return "user-request-details";
+    }
+
     @RequestMapping(value = "/user-request-details", method = RequestMethod.POST)
     public String saveRequest(@RequestParam("priority") int priority,
                               @RequestParam("title") String title,

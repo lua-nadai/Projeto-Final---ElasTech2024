@@ -17,4 +17,7 @@ public interface SupportRequestRepository extends JpaRepository<SupportRequest, 
 
     @Query("SELECT COUNT(r) FROM SupportRequest r JOIN r.status s WHERE r.status.statusName = 'Waiting'")
     int countWaitingRequests();
+
+    @Query("SELECT r FROM SupportRequest r WHERE r.user.id = ?1")
+    List<SupportRequest> findByUserId(int userId);
 }

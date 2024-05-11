@@ -104,8 +104,8 @@ public class AdministratoController {
     }
 
     @GetMapping("/user-page")
-    public String userPage(@RequestParam("name") String name, Model model) {
-        return userController.userPage(name, model);
+    public String userPage(Model model, HttpSession httpSession) {
+        return userController.userPage(model, httpSession);
     }
 
     @PostMapping("/add-department")

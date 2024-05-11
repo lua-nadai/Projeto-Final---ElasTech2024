@@ -62,6 +62,15 @@ public class UserController {
         return "user-request-details";
     }
 
+    @GetMapping("/user-request-details")
+    public String getRequestDetailsPage(@RequestParam("Id") int id, Model model, HttpSession session) {
+        SupportRequest request = supportRequestService.getRequestById(id);
+        Person loggedUser = (Person) session.getAttribute("loggedInUser");
+        model.addAttribute("request", request);
+        model.addAttribute("name", loggedUser.getName());
+        return "user-request-details";
+    }
+
     @RequestMapping(value = "/user-request-details", method = RequestMethod.POST)
     public String saveRequest(@RequestParam("priority") int priority,
                               @RequestParam("title") String title,
@@ -98,9 +107,9 @@ public class UserController {
         List<SupportRequest> availableRequests = new ArrayList<>();
         List<SupportRequest> openRequests = new ArrayList<>();
 
-        for (SupportRequest call : allRequests) {
-            int statusId = call.getStatus().getId();
-            (statusId == 1 ? availableRequests : openRequests).add(call);
+        for (SupportRequest request : allRequests) {
+            int statusId = request.getStatus().getId();
+            (statusId == 1 ? availableRequests : openRequests).add(request);
         }
 
         model.addAttribute("availableCalls", allRequests);

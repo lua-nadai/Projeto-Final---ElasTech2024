@@ -80,9 +80,9 @@ public class TechnicianController {
         Status updatedStatus = null;
 
         switch (status) {
-            case 1 -> updatedStatus = statusRepository.findById(2).orElse(null); // In database, id 2 = In progress
-            case 2 -> updatedStatus = statusRepository.findById(3).orElse(null); // In database, id 3 = Escalated to another department
-            case 3 -> updatedStatus = statusRepository.findById(4).orElse(null); // In database, id 4 = Completed
+            case 1 -> updatedStatus = statusRepository.findById(2).orElse(null); // id 2 = Em atendimento
+            case 2 -> updatedStatus = statusRepository.findById(3).orElse(null); // id 3 = Escalado para outro setor
+            case 3 -> updatedStatus = statusRepository.findById(4).orElse(null); // id 4 = na base de dados o id 4 = Finalizado
             default -> { return "redirect:/technician-page?name=" + technicianLogged.getName();}
         }
 

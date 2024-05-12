@@ -3,18 +3,27 @@ package com.soulcode.projetofinal.controllers;
 import com.soulcode.projetofinal.models.Administrato;
 import com.soulcode.projetofinal.models.Department;
 import com.soulcode.projetofinal.models.SupportRequest;
+import com.soulcode.projetofinal.repositories.SupportRequestRepository;
 import com.soulcode.projetofinal.services.AdministratoService;
+import com.soulcode.projetofinal.services.SupportRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -28,6 +37,9 @@ public class AdministratoController {
 
     @Autowired
     private UserController userController;
+
+    @Autowired
+    private SupportRequestService supportRequestService;
 
     @GetMapping("/{id}")
     public Administrato getAdministratorById(@PathVariable Long id) {
@@ -120,5 +132,31 @@ public class AdministratoController {
         model.addAttribute("waitingRequestsCount", administratoService.getWaitingRequestsCount());
 
         return "admin-dashboard";
+    }
+
+    private static boolean requestsWereRegistered = false;
+
+
+    @Autowired
+    private SupportRequestRepository supportRequestRepository;
+
+    @GetMapping("/admin-page")
+    public String adminPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request) {
+
+
+        List<SupportRequest> availableRequests = supportRequestService.findAvaibleRequests();
+        List<SupportRequest> requestsInProgess = supportRequestService.findRequestsInProgress();
+
+
+        model.addAttribute("availableRequests", availableRequests);
+        model.addAttribute("requestsInProgess", requestsInProgess);
+        model.addAttribute("name", name);
+
+        return "admin-page";
+    }
+
+    public List<SupportRequest> findRequestsInProgress(){
+        List<SupportRequest> requestsInProgress = supportRequestService.findRequestsInProgress();
+        return requestsInProgress;
     }
 }

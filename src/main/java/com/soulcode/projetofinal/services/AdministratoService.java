@@ -82,4 +82,5 @@ public class AdministratoService {
     public int getWaitingRequestsCount() {
         return authenticationService.getWaitingRequestsCount();
     }
+
 }

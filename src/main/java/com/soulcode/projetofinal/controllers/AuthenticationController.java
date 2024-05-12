@@ -54,7 +54,7 @@ public class AuthenticationController {
 
             // Redirect to the appropriate page based on the user type (technician or client)
             if (userType == 1) {
-                return "redirect:/admin?name=" + user.getName();
+                return "redirect:/admin/admin-page?name=" + user.getName();
             } if (userType == 2) {
                 return "redirect:/technician-page?name=" + user.getName();
             } else {

@@ -3,7 +3,6 @@ package com.soulcode.projetofinal.controllers;
 import com.soulcode.projetofinal.models.Administrato;
 import com.soulcode.projetofinal.models.Department;
 import com.soulcode.projetofinal.models.SupportRequest;
-import com.soulcode.projetofinal.repositories.SupportRequestRepository;
 import com.soulcode.projetofinal.services.AdministratoService;
 import com.soulcode.projetofinal.services.SupportRequestService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +38,7 @@ public class AdministratoController {
 
     @Autowired
     private SupportRequestService supportRequestService;
+
 
     @GetMapping("/{id}")
     public Administrato getAdministratorById(@PathVariable Long id) {
@@ -125,28 +124,27 @@ public class AdministratoController {
         return "redirect:/admin/dashboard";
     }
 
+
     @GetMapping("/dashboard")
     public String administratorDashboard(Model model) {
-        model.addAttribute("openRequestsCount", administratoService.getOpenRequestsCount());
-        model.addAttribute("inProgressRequestsCount", administratoService.getInProgressRequestsCount());
-        model.addAttribute("waitingRequestsCount", administratoService.getWaitingRequestsCount());
+        String openRequestsCount = String.valueOf(administratoService.getOpenRequestsCount());
+        String inProgressRequestsCount = String.valueOf(administratoService.getInProgressRequestsCount());
+        String anotherDepartRequestsCount = String.valueOf(administratoService.getAnotherDepartmentRequestsCount());
+        String completedRequestsCount = String.valueOf(administratoService.getCompletedRequestsCount());
+
+        model.addAttribute("openRequestsCount", openRequestsCount);
+        model.addAttribute("inProgressRequestsCount", inProgressRequestsCount);
+        model.addAttribute("anotherDepartRequestsCount", anotherDepartRequestsCount);
+        model.addAttribute("completedRequestsCount", completedRequestsCount);
 
         return "admin-dashboard";
     }
 
-    private static boolean requestsWereRegistered = false;
-
-
-    @Autowired
-    private SupportRequestRepository supportRequestRepository;
 
     @GetMapping("/admin-page")
     public String adminPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request) {
-
-
         List<SupportRequest> availableRequests = supportRequestService.findAvaibleRequests();
         List<SupportRequest> requestsInProgess = supportRequestService.findRequestsInProgress();
-
 
         model.addAttribute("availableRequests", availableRequests);
         model.addAttribute("requestsInProgess", requestsInProgess);
@@ -159,4 +157,5 @@ public class AdministratoController {
         List<SupportRequest> requestsInProgress = supportRequestService.findRequestsInProgress();
         return requestsInProgress;
     }
+
 }

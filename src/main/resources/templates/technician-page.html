@@ -41,7 +41,7 @@
                         <th>Prioridade</th>
                         <th>Descrição</th>
                         <th>Status</th>
-                        <th>Detalhes</th>
+                        <th>Alterar Status</th>
                     </tr>
                     <tr th:each="supportRequest, row : ${availableRequests}">
                         <td th:text="${supportRequest.startDate}"></td>
@@ -51,51 +51,18 @@
                         <td th:text="${supportRequest.description}"></td>
                         <td th:text="${supportRequest.status.name}"></td>
                         <td>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal">Detalhes</button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 id="exampleModalLabel">Detalhes do Chamado</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close">X
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="form" action="/user-request-details" method="post">
-                                                <div class="infos-chamado">
-                                                    <h4>Data: <span th:text="${supportRequest.startDate}"></span></h4>
-                                                    <h4>Solicitante: <span th:text="${name}"></span></h4>
-                                                    <h4>Setor: <span th:text="${supportRequest.department.name}"></span>
-                                                    </h4>
-                                                    <h4>Status: <span th:text="${supportRequest.status.name}"></span>
-                                                    </h4>
-                                                    <h4>Prioridade: <span th:text="${supportRequest.priority}"></span>
-                                                    </h4>
-                                                    <h4>Descrição: <span th:text="${supportRequest.description}"></span>
-                                                    </h4>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <form class="form" action="/change-status" method="post">
-                                            <input type="hidden" name="id" th:value="${supportRequest.id}"/>
-                                            <input type="hidden" name="name" value="${name}"/>
-                                            <label for="available-status">Alterar status do chamado:</label>
-                                            <select name="status" id="available-status">
-                                                <option value="0" selected>Selecione</option>
-                                                <option value="1">Em atendimento</option>
-                                                <option value="2">Escalado para outro setor</option>
-                                                <option value="3">Concluído</option>
-                                            </select>
-                                            <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancelar
-                                            </button>
-                                            <button type="submit" class="bnt-confirm">Confirmar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                            <form class="form" action="/change-status" method="post">
+                                <input type="hidden" name="id" th:value="${supportRequest.id}"/>
+                                <input type="hidden" name="name" value="${name}"/>
+                                <label for="available-status"></label>
+                                <select name="status" id="available-status">
+                                    <option value="0" selected>Selecione</option>
+                                    <option value="1">Em atendimento</option>
+                                    <option value="2">Escalado para outro setor</option>
+                                    <option value="3">Concluído</option>
+                                </select>
+                                <button type="submit" class="bnt-confirm">Confirmar</button>
+                            </form>
                         </td>
                     </tbody>
                 </table>
@@ -113,7 +80,6 @@
                         <th>Prioridade</th>
                         <th>Descrição</th>
                         <th>Status</th>
-                        <th>Detalhes</th>
                     </tr>
                     <tr th:each="supportRequest, row : ${requestsInProcess}">
                         <td th:text="${supportRequest.startDate}"></td>
@@ -122,36 +88,6 @@
                         <td th:text="${supportRequest.priority}"></td>
                         <td th:text="${supportRequest.description}"></td>
                         <td th:text="${supportRequest.status.name}"></td>
-                        <td>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#modal">Detalhes</button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close">X
-                                            </button>
-                                            <h1 id="exampleModalLabel2">Detalhes do Chamado</h1>
-                                            <div class="infos-chamado">
-                                                <h4>Data: <span th:text="${supportRequest.startDate}"></span></h4>
-                                                <h4>Solicitante: <span th:text="${name}"></span></h4>
-                                                <h4>Setor: <span th:text="${supportRequest.department.name}"></span>
-                                                </h4>
-                                                <h4>Status: <span th:text="${supportRequest.status.name}"></span>
-                                                </h4>
-                                                <h4>Prioridade: <span th:text="${supportRequest.priority}"></span>
-                                                </h4>
-                                                <h4>Descrição: <span th:text="${supportRequest.description}"></span>
-                                                </h4>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
                     </tr>
                     </tbody>
                 </table>

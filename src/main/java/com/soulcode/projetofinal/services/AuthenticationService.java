@@ -72,16 +72,5 @@ public class AuthenticationService {
         return user != null;
     }
 
-    public int getOpenRequestsCount() {
-        return supportRequestRepository.countOpenRequests();
-    }
-
-    public int getInProgressRequestsCount() {
-        return supportRequestRepository.countInProgressRequests();
-    }
-
-    public int getWaitingRequestsCount() {
-        return supportRequestRepository.countWaitingRequests();
-    }
 }
 

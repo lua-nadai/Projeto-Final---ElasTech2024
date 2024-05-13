@@ -9,15 +9,19 @@ import java.util.List;
 public interface SupportRequestRepository extends JpaRepository<SupportRequest, Integer> {
     List<SupportRequest> findByStatusId(int statusId);
 
-    @Query("SELECT COUNT(r) FROM SupportRequest r JOIN r.status s WHERE r.status.statusName = 'Open'")
-    int countOpenRequests();
-
-    @Query("SELECT COUNT(r) FROM SupportRequest r JOIN r.status s WHERE r.status.statusName = 'InProgress'")
-    int countInProgressRequests();
-
-    @Query("SELECT COUNT(r) FROM SupportRequest r JOIN r.status s WHERE r.status.statusName = 'Waiting'")
-    int countWaitingRequests();
-
     @Query("SELECT r FROM SupportRequest r WHERE r.user.id = ?1")
     List<SupportRequest> findByUserId(int userId);
+
+    @Query("SELECT COUNT(*) FROM SupportRequest r WHERE r.status.name = 'Aguardando Técnico'")
+    int countOpenRequests();
+
+    @Query("SELECT COUNT(*) FROM SupportRequest r WHERE r.status.name = 'Em atendimento'")
+    int countInProgressRequests();
+
+    @Query("SELECT COUNT(*) FROM SupportRequest r WHERE r.status.name = 'Escalado para outro setor'")
+    int countAnotherDepartmentRequests();
+
+    @Query("SELECT COUNT(*) FROM SupportRequest r WHERE r.status.name = 'Finalizado'")
+    int countCompletedRequests();
+
 }

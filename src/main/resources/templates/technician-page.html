@@ -41,7 +41,6 @@
                         <th>Prioridade</th>
                         <th>Descrição</th>
                         <th>Status</th>
-                        <th>Alterar Status</th>
                     </tr>
                     <tr th:each="supportRequest, row : ${availableRequests}">
                         <td th:text="${supportRequest.startDate}"></td>
@@ -49,14 +48,13 @@
                         <td th:text="${supportRequest.department.name}"></td>
                         <td th:text="${supportRequest.priority}"></td>
                         <td th:text="${supportRequest.description}"></td>
-                        <td th:text="${supportRequest.status.name}"></td>
                         <td>
                             <form class="form" action="/change-status" method="post">
                                 <input type="hidden" name="id" th:value="${supportRequest.id}"/>
                                 <input type="hidden" name="name" value="${name}"/>
                                 <label for="available-status"></label>
                                 <select name="status" id="available-status">
-                                    <option value="0" selected>Selecione</option>
+                                    <option value="0" selected th:text="${supportRequest.status.name}" disabled></option>
                                     <option value="1">Em atendimento</option>
                                     <option value="2">Escalado para outro setor</option>
                                     <option value="3">Concluído</option>
@@ -81,7 +79,7 @@
                         <th>Descrição</th>
                         <th>Status</th>
                     </tr>
-                    <tr th:each="supportRequest, row : ${requestsInProcess}">
+                    <tr th:each="supportRequest, row : ${requestInProcess}">
                         <td th:text="${supportRequest.startDate}"></td>
                         <td th:text="${supportRequest.title}"></td>
                         <td th:text="${supportRequest.department.name}"></td>

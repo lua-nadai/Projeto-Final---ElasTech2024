@@ -35,35 +35,21 @@ public class TechnicianController {
     private static boolean requestsWereRegistered = false;
 
     @GetMapping("/technician-page")
-    public String technicianPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request, HttpSession httpSession) {
-        if (!requestsWereRegistered) {
-            supportRequestService.registerFakeRequests(request);
-            requestsWereRegistered = true;
-        }
-
+    public String technicianPage(@RequestParam(required=false)String name,Model model,HttpServletRequest request,HttpSession httpSession) {
         Person loggedUser = (Person) httpSession.getAttribute("loggedUser");
 
-        List<SupportRequest> availableRequests = new ArrayList<>();
-        List<SupportRequest> requestsInProcess = new ArrayList<>();
-        List<SupportRequest> allRequests = getFakeRequestsFromDatabase();
-        List<SupportRequest> technicianRequests = supportRequestRepository.findByUserId(loggedUser.getId());
-
-        for (SupportRequest supportRequest : allRequests) {
-            int statusId = supportRequest.getStatus().getId();
-            (statusId == 1 ? availableRequests : requestsInProcess).add(supportRequest);
+        if (loggedUser==null){
+            return "redirect:login";
         }
 
-        List<SupportRequest> requestsFromDatabaseWithInitialStatus = supportRequestService.getRequestsWithStatus(1);
+        List<SupportRequest> availableRequests = supportRequestService.findAvaibleRequests();
+        List<SupportRequest> technicianRequests = supportRequestService.findRequestsInProgressByTech(loggedUser.getId());
 
-        requestsFromDatabaseWithInitialStatus = requestsFromDatabaseWithInitialStatus.stream()
-                .filter(request1 -> !availableRequests.contains(request)).toList();
-
-        availableRequests.addAll(requestsFromDatabaseWithInitialStatus);
 
         model.addAttribute("availableRequests", availableRequests);
-        model.addAttribute("requestsInProcess", requestsInProcess);
+       /* model.addAttribute("requestsInProcess", requestsInProcess);*/
         model.addAttribute("technicianRequests", technicianRequests);
-        model.addAttribute("name", name);
+        model.addAttribute("name", loggedUser.getName());
 
         return "technician-page";
     }

@@ -79,7 +79,7 @@
                         <th>Descrição</th>
                         <th>Status</th>
                     </tr>
-                    <tr th:each="supportRequest, row : ${requestInProcess}">
+                    <tr th:each="supportRequest, row : ${technicianRequests}">
                         <td th:text="${supportRequest.startDate}"></td>
                         <td th:text="${supportRequest.title}"></td>
                         <td th:text="${supportRequest.department.name}"></td>

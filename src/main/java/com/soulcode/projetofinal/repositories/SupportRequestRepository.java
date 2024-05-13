@@ -12,6 +12,9 @@ public interface SupportRequestRepository extends JpaRepository<SupportRequest, 
     @Query("SELECT r FROM SupportRequest r WHERE r.user.id = ?1")
     List<SupportRequest> findByUserId(int userId);
 
+    @Query("SELECT r FROM SupportRequest r WHERE r.technician.id = ?1")
+    List<SupportRequest> findByTechId(int techId);
+
     @Query("SELECT COUNT(*) FROM SupportRequest r WHERE r.status.name = 'Aguardando Técnico'")
     int countOpenRequests();
 

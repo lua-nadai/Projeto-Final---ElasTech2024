@@ -72,13 +72,13 @@ public class AdministratoController {
     }
 
     @GetMapping("/technician-page")
-    public String technicianPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request) {
-        return technicianController.technicianPage(name, model, request);
+    public String technicianPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request, HttpSession session) {
+        return technicianController.technicianPage(name, model, request, session);
     }
 
     @GetMapping("/request-details/{id}")
-    public String requestDetails(@PathVariable("id") int id, Model model) {
-        return technicianController.requestDetails(id, model);
+    public String requestDetails(@PathVariable("id") int id, Model model, HttpSession session) {
+        return technicianController.requestDetails(id, model, session);
     }
 
     @PostMapping("/change-status")

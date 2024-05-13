@@ -3,6 +3,7 @@ package com.soulcode.projetofinal.controllers;
 import com.soulcode.projetofinal.models.SupportRequest;
 import com.soulcode.projetofinal.models.Person;
 import com.soulcode.projetofinal.models.Status;
+import com.soulcode.projetofinal.repositories.PersonRepository;
 import com.soulcode.projetofinal.repositories.SupportRequestRepository;
 import com.soulcode.projetofinal.repositories.StatusRepository;
 import com.soulcode.projetofinal.services.SupportRequestService;
@@ -28,18 +29,24 @@ public class TechnicianController {
     @Autowired
     StatusRepository statusRepository;
 
+    @Autowired
+    PersonRepository personRepository;
+
     private static boolean requestsWereRegistered = false;
 
     @GetMapping("/technician-page")
-    public String technicianPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request) {
+    public String technicianPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request, HttpSession httpSession) {
         if (!requestsWereRegistered) {
             supportRequestService.registerFakeRequests(request);
             requestsWereRegistered = true;
         }
 
+        Person loggedUser = (Person) httpSession.getAttribute("loggedUser");
+
         List<SupportRequest> availableRequests = new ArrayList<>();
         List<SupportRequest> requestsInProcess = new ArrayList<>();
         List<SupportRequest> allRequests = getFakeRequestsFromDatabase();
+        List<SupportRequest> technicianRequests = supportRequestRepository.findByUserId(loggedUser.getId());
 
         for (SupportRequest supportRequest : allRequests) {
             int statusId = supportRequest.getStatus().getId();
@@ -55,14 +62,17 @@ public class TechnicianController {
 
         model.addAttribute("availableRequests", availableRequests);
         model.addAttribute("requestsInProcess", requestsInProcess);
+        model.addAttribute("technicianRequests", technicianRequests);
         model.addAttribute("name", name);
 
         return "technician-page";
     }
 
     @GetMapping("/request-details/{id}")
-    public String requestDetails(@PathVariable("id") int id, Model model) {
+    public String requestDetails(@PathVariable("id") int id, Model model, HttpSession session) {
         SupportRequest request = supportRequestService.getRequestById(id);
+
+        Person loggedUser = (Person) session.getAttribute("loggedUser");
 
         model.addAttribute("request", request);
         model.addAttribute("department", request.getDepartment().toString());

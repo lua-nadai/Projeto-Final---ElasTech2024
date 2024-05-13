@@ -130,5 +130,16 @@ public class SupportRequestService {
 
     }
 
+    public List<SupportRequest> findRequestsInProgressByTech(int techId){
+        List<SupportRequest> supportRequestsInProgress = findRequestsInProgress();
+        List<SupportRequest> supportRequestsInProgressByTech = new ArrayList<>();
+
+        for (SupportRequest request : supportRequestsInProgress) {
+            if (request.getTechnician() != null && request.getTechnician().getId() == techId) {
+                supportRequestsInProgressByTech.add(request);
+            }
+        }
+        return supportRequestsInProgressByTech;
+    }
 }
 

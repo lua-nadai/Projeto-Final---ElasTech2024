@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class SupportRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
 
     private String title;

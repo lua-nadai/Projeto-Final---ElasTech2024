@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="styles/style-pg.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <header>
     <nav>
@@ -54,10 +55,11 @@
                                 <input type="hidden" name="name" value="${name}"/>
                                 <label for="available-status"></label>
                                 <select name="status" id="available-status">
-                                    <option value="0" selected th:text="${supportRequest.status.name}" disabled></option>
+                                    <option value="0" selected th:text="${supportRequest.status.name}"
+                                            disabled></option>
                                     <option value="1">Em atendimento</option>
                                     <option value="2">Escalado para outro setor</option>
-                                    <option value="3">Concluído</option>
+                                    <option value="3">Finalizado</option>
                                 </select>
                                 <button type="submit" class="bnt-confirm">Confirmar</button>
                             </form>
@@ -85,7 +87,39 @@
                         <td th:text="${supportRequest.department.name}"></td>
                         <td th:text="${supportRequest.priority}"></td>
                         <td th:text="${supportRequest.description}"></td>
-                        <td th:text="${supportRequest.status.name}"></td>
+                        <td>
+                            <form class="form" action="/change-status" method="post">
+                                <input type="hidden" name="id" th:value="${supportRequest.id}"/>
+                                <input type="hidden" name="name" value="${name}"/>
+                                <label for="available-status"></label>
+                                <select name="status" id="available-status2">
+                                    <option value="0" selected th:text="${supportRequest.status.name}"
+                                            disabled></option>
+                                    <option value="1">Em atendimento</option>
+                                    <option value="2">Escalado para outro setor</option>
+                                    <option value="3">Finalizado</option>
+                                </select>
+                                <button type="submit" class="bnt-confirm">Confirmar</button>
+                            </form>
+                            <script>
+                                // Espera que o DOM esteja totalmente carregado
+                                $(document).ready(function() {
+                                    // Monitora mudanças no seletor
+                                    $('#available-status2').change(function() {
+                                        // Verifica se a opção selecionada é "Finalizado" (value="3")
+                                        if ($(this).val() === '3') {
+                                            // Se for "Finalizado", desabilita o seletor e o botão de confirmar
+                                            $(this).prop('disabled', true);
+                                            $('.btn-confirm').prop('disabled', true);
+                                        } else {
+                                            // Caso contrário, garante que ambos estejam habilitados
+                                            $(this).prop('disabled', false);
+                                            $('.btn-confirm').prop('disabled', false);
+                                        }
+                                    });
+                                });
+                            </script>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

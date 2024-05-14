@@ -26,11 +26,14 @@
 body {
     width: 100vw;
     margin: 0;
-    padding: 0;
     background-color: var(--white);
     font-family: "Blinker", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    min-height: calc(100vh - 115px);
+    padding-bottom: 115px;
+    overflow-x: hidden;
 }
 
 ul {
@@ -505,5 +508,97 @@ footer {
             height: 70px;
             border: 0.5px solid var(--white);
          }
+    }
+}
+
+/* Page About */
+
+#about {
+    top: 70px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h1 {
+        color: var(--p5);
+        font-size: 2em;
+    }
+
+    section {
+        width: 90vw;
+        height: 200px;
+        background-color: var(--n1);
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+       margin: 10px 0;
+
+        .dev-container {
+            width: 400px;
+            display: flex;
+
+            .img-jana-about {
+                width: 200px;
+                height: 200px;
+                border-radius: 10px 0 0 10px;
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    height: 200px;
+                    position: absolute;
+                    left: -15px;
+                    top: 0;
+                }
+            }
+
+            .img-dev-about {
+                width: 200px;
+                height: 200px;
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    height: 200px;
+                    position: absolute;
+                    left: 25px;
+                    top: 0;
+                }
+            }
+
+            .info-dev-about {
+                width: 160px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+
+                h2 {
+                    color: var(--p4);
+                    margin: 0;
+                }
+
+                a, :link, :visited {
+                    text-decoration: none;
+                    color: var(--n3);
+                }
+            }
+
+
+        }
+
+        span {
+            height: 180px;
+            border: 1px solid var(--n3);
+            margin: 0 10px;
+        }
+
+        .dev-text {
+            text-align: center;
+            width: 100%;
+        }
     }
 }

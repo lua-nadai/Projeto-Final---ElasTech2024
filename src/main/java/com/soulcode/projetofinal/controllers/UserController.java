@@ -119,5 +119,15 @@ public class UserController {
 
         return "user-page";
     }
+
+    @Controller
+    public class AboutController {
+
+        @GetMapping("/about")
+        public String aboutPage() {
+            return "about";
+        }
+    }
+
 }
 

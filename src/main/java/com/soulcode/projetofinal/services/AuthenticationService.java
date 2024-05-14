@@ -42,35 +42,44 @@ public class AuthenticationService {
         return password.equals(confirmPassword);
     }
 
-    public void requestPasswordReset(String email, HttpServletRequest request) {
+    public void resetPassword(String email, String newPassword) {
+        // Verificar se o e-mail fornecido está associado a um usuário existente
         Person user = personRepository.findByEmail(email);
         if (user != null) {
-            String resetToken = generateResetToken();
-            user.setResetToken(resetToken);
+            // Atualizar a senha do usuário
+            user.setPassword(newPassword); // Aqui você deve garantir que a senha seja armazenada de forma segura, como um hash
             personRepository.save(user);
-            String resetLink = request.getRequestURL().toString().replace("reset-password", "password-reset") + "?token=" + resetToken;
         }
     }
 
-    public boolean resetPassword(String token, String newPassword) {
-        Person user = personRepository.findByResetToken(token);
-        if (user != null) {
-            user.setPassword(newPassword);
-            user.setResetToken(null);
-            personRepository.save(user);
-            return true;
-        }
-        return false;
-    }
+//    public void requestPasswordReset(String email, HttpServletRequest request) {
+//        Person user = personRepository.findByEmail(email);
+//        if (user != null) {
+//            String resetToken = generateResetToken();
+//            user.setResetToken(resetToken);
+//            personRepository.save(user);
+//            String resetLink = request.getRequestURL().toString().replace("reset-password", "password-reset") + "?token=" + resetToken;
+//        }
+//    }
+//
+//    public boolean resetPassword(String token, String newPassword) {
+//        Person user = personRepository.findByResetToken(token);
+//        if (user != null) {
+//            user.setPassword(newPassword);
+//            user.setResetToken(null);
+//            personRepository.save(user);
+//            return true;
+//        }
+//        return false;
+//    }
 
-    private String generateResetToken() {
-        return UUID.randomUUID().toString();
-    }
-
-    public boolean isResetTokenValid(String token) {
-        Person user = personRepository.findByResetToken(token);
-        return user != null;
-    }
+//    private String generateResetToken() {
+//        return UUID.randomUUID().toString();
+//    }
+//
+//    public boolean isResetTokenValid(String token) {
+//        Person user = personRepository.findByResetToken(token);
+//        return user != null;
+//    }
 
 }
-

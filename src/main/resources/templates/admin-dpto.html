@@ -19,106 +19,47 @@
             <a href="/"><h1>SoulDesk</h1></a>
         </div>
         <div class="nav-info">
-            <h2>Olá, <span th:text="${name}"></span>!</h2>
             <ul>
                 <li>
                     <a href="/">Sair</a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/admin-page(name=${name})}">Adm page</a>
                 </li>
             </ul>
         </div>
     </nav>
 </header>
+
+<form action="/admin/add-department" method="post">
+    <label for="departmentName">Nome do Departamento:</label>
+    <input type="text" id="departmentName" name="departmentName">
+    <button type="submit">Adicionar Departamento</button>
+</form>
+
+
+
+
 <main>
-    <section id="technical">
+    <section id="user">
         <article>
             <h1>Lista de Chamados</h1>
             <div class="table-container">
                 <table>
                     <tbody>
                     <tr>
-                        <th>Data</th>
-                        <th>Titulo</th>
-                        <th>Departamento</th>
-                        <th>Prioridade</th>
-                        <th>Descrição</th>
-                        <th>Status</th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
                     </tr>
-                    <tr th:each="supportRequest, row : ${availableRequests}">
-                        <td th:text="${supportRequest.startDate}"></td>
-                        <td th:text="${supportRequest.title}"></td>
-                        <td th:text="${supportRequest.department.name}"></td>
-                        <td th:text="${supportRequest.priority}"></td>
-                        <td th:text="${supportRequest.description}"></td>
+                    <tr th:each="department : ${departments}">
+                        <td th:text="${department.id}"></td>
+                        <td th:text="${department.name}"></td>
                         <td>
-                            <form class="form" action="/change-status" method="post">
-                                <input type="hidden" name="id" th:value="${supportRequest.id}"/>
-                                <input type="hidden" name="name" value="${name}"/>
-                                <label for="available-status"></label>
-                                <select name="status" id="available-status">
-                                    <option value="0" selected th:text="${supportRequest.status.name}"
-                                            disabled></option>
-                                    <option value="1">Em atendimento</option>
-                                    <option value="2">Escalado para outro setor</option>
-                                    <option value="3">Finalizado</option>
-                                </select>
-                                <button type="submit" class="bnt-confirm">Confirmar</button>
+                            <form action="/admin/delete-department" method="post">
+                                <input type="hidden" name="departmentId" th:value="${department.id}" />
+                                <button type="submit">Excluir departamento</button>
                             </form>
-                        </td>
-                    </tbody>
-                </table>
-            </div>
-        </article>
-        <article>
-            <h1>Lista de Chamados Atribuidos</h1>
-            <div class="table-container">
-                <table>
-                    <tbody>
-                    <tr>
-                        <th>Data</th>
-                        <th>Titulo</th>
-                        <th>Departamento</th>
-                        <th>Prioridade</th>
-                        <th>Descrição</th>
-                        <th>Status</th>
-                    </tr>
-                    <tr th:each="supportRequest, row : ${technicianRequests}">
-                        <td th:text="${supportRequest.startDate}"></td>
-                        <td th:text="${supportRequest.title}"></td>
-                        <td th:text="${supportRequest.department.name}"></td>
-                        <td th:text="${supportRequest.priority}"></td>
-                        <td th:text="${supportRequest.description}"></td>
-                        <td>
-                            <form class="form" action="/change-status" method="post">
-                                <input type="hidden" name="id" th:value="${supportRequest.id}"/>
-                                <input type="hidden" name="name" value="${name}"/>
-                                <label for="available-status"></label>
-                                <select name="status" id="available-status2">
-                                    <option value="0" selected th:text="${supportRequest.status.name}"
-                                            disabled></option>
-                                    <option value="1">Em atendimento</option>
-                                    <option value="2">Escalado para outro setor</option>
-                                    <option value="3">Finalizado</option>
-                                </select>
-                                <button type="submit" class="bnt-confirm">Confirmar</button>
-                            </form>
-                            <script>
-                                // Espera que o DOM esteja totalmente carregado
-                                $(document).ready(function() {
-                                    // Monitora mudanças no seletor
-                                    $('#available-status2').change(function() {
-                                        // Verifica se a opção selecionada é "Finalizado" (value="3")
-                                        if ($(this).val() === '3') {
-                                            // Se for "Finalizado", desabilita o seletor e o botão de confirmar
-                                            $(this).prop('disabled', true);
-                                            $('.btn-confirm').prop('disabled', true);
-                                        } else {
-                                            // Caso contrário, garante que ambos estejam habilitados
-                                            $(this).prop('disabled', false);
-                                            $('.btn-confirm').prop('disabled', false);
-                                        }
-                                    });
-                                });
-                            </script>
                         </td>
                     </tr>
                     </tbody>
@@ -126,7 +67,14 @@
             </div>
         </article>
     </section>
+    </form>
 </main>
+
+
+<!-- No final do conteúdo -->
+<a th:href="@{/admin/admin-page(name=${name})}">Voltar para página do admin</a>
+
+
 <footer>
     <div class="footer-container">
         <div class="footer-about">
@@ -188,4 +136,5 @@
         <p>Copy Right © 2024 SoulCode Academy #ElasTech</p>
     </div>
 </footer>
+
 </html>

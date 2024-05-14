@@ -6,6 +6,7 @@ import com.soulcode.projetofinal.repositories.PersonRepository;
 import com.soulcode.projetofinal.repositories.StatusRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -140,6 +141,12 @@ public class SupportRequestService {
             }
         }
         return supportRequestsInProgressByTech;
+    }
+
+    @Transactional
+    public void deleteTicketsByDepartmentId(int departmentId) {
+        // Chama o método no repositório para excluir os tickets associados a um departamento pelo ID do departamento
+        supportRequestRepository.deleteByDepartmentId(departmentId);
     }
 }
 

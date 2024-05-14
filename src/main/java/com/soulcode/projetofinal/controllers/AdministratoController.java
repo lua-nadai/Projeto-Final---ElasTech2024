@@ -121,16 +121,41 @@ public class AdministratoController {
 
     @PostMapping("/add-department")
     public String addDepartment(@RequestParam String departmentName) {
+        administratoService.addDepartment(departmentName);
         return "redirect:/admin/dashboard";
     }
+
+    @GetMapping("/departments")
+    public String getAllDepartments(Model model) {
+        List<Department> departments = administratoService.getAllDepartments();
+        model.addAttribute("departments", departments);
+        return "admin-dashboard";
+    }
+
+    @PostMapping("/delete-department")
+    public String deleteDepartmentAndTickets(@RequestParam int departmentId) {
+        administratoService.deleteDepartmentAndTickets(departmentId);
+        return "redirect:/admin/departments";
+    }
+
+  /*  @PostMapping("/admin/edit-department")
+    public String editDepartment(@RequestParam("id") int id, @RequestParam("name") String name) {
+        administratoService.updateDepartment(id, name);
+        return "redirect:/admin/dashboard";
+    }*/
 
 
     @GetMapping("/dashboard")
     public String administratorDashboard(Model model) {
+        //retornando lista de departamentos para a dashboard
+        List<Department> departments = administratoService.getAllDepartments();
+        model.addAttribute("departments", departments);
+
         String openRequestsCount = String.valueOf(administratoService.getOpenRequestsCount());
         String inProgressRequestsCount = String.valueOf(administratoService.getInProgressRequestsCount());
         String anotherDepartRequestsCount = String.valueOf(administratoService.getAnotherDepartmentRequestsCount());
         String completedRequestsCount = String.valueOf(administratoService.getCompletedRequestsCount());
+
 
         model.addAttribute("openRequestsCount", openRequestsCount);
         model.addAttribute("inProgressRequestsCount", inProgressRequestsCount);

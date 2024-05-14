@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulDesk</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
+
+
 </head>
+<body>
 
-    <div>
-        <h2>Chamados abertos: <span th:text="${openRequestsCount}"></span>!</h2>
-        <h2>Chamados em progresso: <span th:text="${inProgressRequestsCount}"></span>!</h2>
-        <h2>Chamados <span th:text="${anotherDepartRequestsCount}"></span>!</h2>
-        <h2>Chamados <span th:text="${completedRequestsCount}"></span>!</h2>
-    </div>
+<div>
+    <h2>Chamados abertos: <span th:text="${openRequestsCount}"></span>!</h2>
+    <h2>Chamados em progresso: <span th:text="${inProgressRequestsCount}"></span>!</h2>
+    <h2>Chamados <span th:text="${anotherDepartRequestsCount}"></span>!</h2>
+    <h2>Chamados <span th:text="${completedRequestsCount}"></span>!</h2>
+</div>
 
+<form action="/admin/add-department" method="post">
+    <label for="departmentName">Nome do Departamento:</label>
+    <input type="text" id="departmentName" name="departmentName">
+    <button type="submit">Adicionar Departamento</button>
+</form>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="department : ${departments}">
+        <td th:text="${department.id}"></td>
+        <td th:text="${department.name}"></td>
+        <td>
+            <form action="/admin/delete-department" method="post">
+                <input type="hidden" name="departmentId" th:value="${department.id}" />
+                <button type="submit">Excluir departamento</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
 </html>

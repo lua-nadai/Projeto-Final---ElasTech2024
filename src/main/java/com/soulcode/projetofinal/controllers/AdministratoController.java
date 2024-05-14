@@ -119,17 +119,27 @@ public class AdministratoController {
         return userController.userPage(model, httpSession);
     }
 
+    @GetMapping("/admin-dpto")
+    public String adminDepartmentPage(@RequestParam(required = false) String departmentName, Model model) {
+
+        //retornando lista de departamentos para a dashboard
+        List<Department> departments = administratoService.getAllDepartments();
+        model.addAttribute("departments", departments);
+
+        return "admin-dpto"; // ou qualquer outra coisa que você precise retornar
+    }
+
     @PostMapping("/add-department")
     public String addDepartment(@RequestParam String departmentName) {
         administratoService.addDepartment(departmentName);
-        return "redirect:/admin/dashboard";
+        return "redirect:/admin/admin-dpto";
     }
 
     @GetMapping("/departments")
     public String getAllDepartments(Model model) {
         List<Department> departments = administratoService.getAllDepartments();
         model.addAttribute("departments", departments);
-        return "admin-dashboard";
+        return "admin-dpto";
     }
 
     @PostMapping("/delete-department")
@@ -137,12 +147,6 @@ public class AdministratoController {
         administratoService.deleteDepartmentAndTickets(departmentId);
         return "redirect:/admin/departments";
     }
-
-  /*  @PostMapping("/admin/edit-department")
-    public String editDepartment(@RequestParam("id") int id, @RequestParam("name") String name) {
-        administratoService.updateDepartment(id, name);
-        return "redirect:/admin/dashboard";
-    }*/
 
 
     @GetMapping("/dashboard")

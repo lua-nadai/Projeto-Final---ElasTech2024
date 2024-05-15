@@ -12,6 +12,14 @@ public class Department {
     @Column
     private String name;
 
+    public Department() {
+    }
+
+    public Department(String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

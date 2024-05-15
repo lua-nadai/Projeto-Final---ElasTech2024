@@ -6,13 +6,12 @@
     <title>SoulDesk</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="styles/style-pg.css">
+    <link rel="stylesheet" href="styles/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<body>
 <header>
     <nav>
         <div class="brand">
@@ -61,7 +60,7 @@
                                     <option value="2">Escalado para outro setor</option>
                                     <option value="3">Finalizado</option>
                                 </select>
-                                <button type="submit" class="bnt-confirm">Confirmar</button>
+                                <button type="submit" class="btn-confirm">Confirmar</button>
                             </form>
                         </td>
                     </tbody>
@@ -93,32 +92,13 @@
                                 <input type="hidden" name="name" value="${name}"/>
                                 <label for="available-status"></label>
                                 <select name="status" id="available-status2">
-                                    <option value="0" selected th:text="${supportRequest.status.name}"
-                                            disabled></option>
+                                    <option value="0" selected th:text="${supportRequest.status.name}" disabled></option>
                                     <option value="1">Em atendimento</option>
                                     <option value="2">Escalado para outro setor</option>
                                     <option value="3">Finalizado</option>
                                 </select>
-                                <button type="submit" class="bnt-confirm">Confirmar</button>
+                                <button type="submit" class="btn-confirm" id="btn-select">Confirmar</button>
                             </form>
-                            <script>
-                                // Espera que o DOM esteja totalmente carregado
-                                $(document).ready(function() {
-                                    // Monitora mudanças no seletor
-                                    $('#available-status2').change(function() {
-                                        // Verifica se a opção selecionada é "Finalizado" (value="3")
-                                        if ($(this).val() === '3') {
-                                            // Se for "Finalizado", desabilita o seletor e o botão de confirmar
-                                            $(this).prop('disabled', true);
-                                            $('.btn-confirm').prop('disabled', true);
-                                        } else {
-                                            // Caso contrário, garante que ambos estejam habilitados
-                                            $(this).prop('disabled', false);
-                                            $('.btn-confirm').prop('disabled', false);
-                                        }
-                                    });
-                                });
-                            </script>
                         </td>
                     </tr>
                     </tbody>
@@ -178,4 +158,5 @@
         <p>Copy Right © 2024 SoulCode Academy #ElasTech</p>
     </div>
 </footer>
+</body>
 </html>

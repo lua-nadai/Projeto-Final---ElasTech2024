@@ -38,3 +38,15 @@ SELECT 'Escalado para outro setor' WHERE NOT EXISTS (SELECT 1 FROM status WHERE 
 
 INSERT INTO status (name)
 SELECT 'Finalizado' WHERE NOT EXISTS (SELECT 1 FROM status WHERE name = 'Finalizado');
+
+INSERT INTO priority (name)
+SELECT 'Baixo' WHERE NOT EXISTS (SELECT 1 FROM priority WHERE name = 'Baixo');
+
+INSERT INTO priority (name)
+SELECT 'Médio' WHERE NOT EXISTS (SELECT 1 FROM priority WHERE name = 'Médio');
+
+INSERT INTO priority (name)
+SELECT 'Alto' WHERE NOT EXISTS (SELECT 1 FROM priority WHERE name = 'Alto');
+
+INSERT INTO priority (name)
+SELECT 'Urgente' WHERE NOT EXISTS (SELECT 1 FROM priority WHERE name = 'Urgente');

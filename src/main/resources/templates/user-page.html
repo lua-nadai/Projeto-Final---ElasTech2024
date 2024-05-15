@@ -22,12 +22,12 @@
             <ul>
                 <li>
                     <!-- Button trigger modal -->
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-user">
                         Criar<br>Chamado
                     </a>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modal-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -36,34 +36,32 @@
                                 </div>
                                 <div class="modal-body">
                                     <form class="form" action="/user-request-details" method="post">
-                                        <div class="infos-chamado">
+                                        <div class="md-info">
                                             <label>Solicitante: <span th:text="${name}"></span></label>
-                                            <label>Setor:
-                                                <select class="select" id="department_id" name="department">
-                                                    <option value="1">Financeiro</option>
-                                                    <option value="2">Operacional</option>
-                                                    <option value="3">Recursos Humanos</option>
-                                                    <option value="4">Administrativo</option>
-                                                    <option value="5">Comercial</option>
-                                                    <option value="6">Tecnologia de Informação</option>
-                                                </select>
-                                            </label>
-                                            <div class="input-prioridade">
-                                                <label>Grau de prioridade:</label>
-                                                <select class="select" id="priority" name="priority">
-                                                    <option selected>Selecione</option>
-                                                    <option value="1">Baixo</option>
-                                                    <option value="2">Médio</option>
-                                                    <option value="3">Alto</option>
-                                                    <option value="4">Urgente</option>
-                                                </select>
-                                            </div>
+                                            <label>Setor:</label>
+                                            <select id="department_id" name="department">
+                                                <option value="1">Financeiro</option>
+                                                <option value="2">Operacional</option>
+                                                <option value="3">Recursos Humanos</option>
+                                                <option value="4">Administrativo</option>
+                                                <option value="5">Comercial</option>
+                                                <option value="6">Tecnologia de Informação</option>
+                                            </select>
+                                            <label>Grau de prioridade:</label>
+                                            <select id="priority" name="priority">
+                                                <option selected>Selecione</option>
+                                                <option value="1">Baixo</option>
+                                                <option value="2">Médio</option>
+                                                <option value="3">Alto</option>
+                                                <option value="4">Urgente</option>
+                                            </select>
                                         </div>
-                                        <div class="container-descricao">
+                                        <div class="md-descricao">
                                             <label>Título:</label>
-                                            <input type="text" id="title" name="title" th:value="${title}" required>
+                                            <input type="text" id="title" name="title" th:value="${title}" maxlength="30" required>
                                             <label class="descricao">Descrição: </label>
-                                            <textarea class="textarea" id="description" name="description"></textarea>
+                                            <textarea class="textarea" id="description" name="description" maxlength="250"></textarea>
+                                            <p>Limite máximo de 250 caracteres.</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancelar</button>

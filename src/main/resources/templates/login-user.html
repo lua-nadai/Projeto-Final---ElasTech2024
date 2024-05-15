@@ -33,27 +33,29 @@
     </nav>
 </header>
 <main>
-    <section>
-        <div>
-            <form action="/login-user" method="POST">
-                <div class="form-login">
-                    <h2>Bem-Vindo</h2>
-                    <div class="input-group">
+    <article id="login">
+        <section>
+            <div class="title-login">
+                <h1>Bem-Vindo(a)</h1>
+                <p>Digite seu e-mail e senha:</p>
+            </div>
+            <div class="form-login-container">
+                <form action="/login-user" method="POST">
+                    <div>
                         <label>E-mail:</label>
                         <input type="text" id="email" name="email" th:value="${email}" required>
-                    </div>
-                    <div class="input-group">
                         <label>Senha:</label>
                         <input type="password" id="password" name="password" th:value="${password}" required>
                     </div>
-                    <button type="submit">Entrar</button>
-                    <a href="/register-user" class="button">Criar uma conta</a>
-                    <br>
-                    <br>
-                </div>
-            </form>
-        </div>
-    </section>
+                    <div class="btn-login-container">
+                        <button type="submit">Entrar</button>
+                        <a href="/register-user" class="button">Criar uma conta</a>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+    </article>
 </main>
 <footer>
     <div class="footer-container">
@@ -102,7 +104,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="copy-footer">
         <p>Copy Right © 2024 SoulCode Academy #ElasTech</p>
     </div>
 </footer>

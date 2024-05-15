@@ -2,7 +2,7 @@ package com.soulcode.projetofinal.models;
 import jakarta.persistence.*;
 
 @Entity
-public class Status {
+public class Priority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,9 +10,6 @@ public class Status {
 
     @Column
     private String name;
-
-    @Column
-    private String statusName;
 
     public int getId() {
         return id;

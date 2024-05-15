@@ -7,8 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
+<body>
 <header>
     <nav>
         <div class="brand">
@@ -17,24 +20,58 @@
         <div class="nav-info">
             <h2>Olá, <span th:text="${name}"></span>!</h2>
             <ul>
+
                 <li>
+                    <!-- Button trigger modal -->
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-dpto">
+                        Mudar Departamentos
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-dpto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 id="exampleModalLabel">Alterações Administrativas</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <iframe src="/admin/admin-dpto" width="100%" height="210px" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Button trigger modal -->
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-priority">
+                        Mudar Prioridades
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-priority" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 id="exampleModalLabel2">Alterações Administrativas</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <iframe src="/admin/admin-priority" width="100%" height="210px" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="/">Sair</a>
                 </li>
             </ul>
         </div>
 
-        <a th:href="@{/admin/admin-dpto}">Ir para página de Departamentos</a>
+        <a th:href="@{/admin-dpto}">Ir para página de Departamentos</a>
     </nav>
 </header>
 <main>
-    <section id="technical">
-        <article>
-
+    <article id="admin">
+        <section>
             <h1>Dashboard</h1>
             <iframe src="/admin/dashboard" width="100%" height="210px" frameborder="0"></iframe>
-
-
-
             <h1>Lista de Chamados</h1>
             <div class="table-container">
                 <table>
@@ -58,8 +95,8 @@
                     </tbody>
                 </table>
             </div>
-        </article>
-        <article>
+        </section>
+        <section>
             <h1>Lista de Chamados em Progresso</h1>
             <div class="table-container">
                 <table>
@@ -83,8 +120,8 @@
                     </tbody>
                 </table>
             </div>
-        </article>
-    </section>
+        </section>
+    </article>
 </main>
 <footer>
     <div class="footer-container">
@@ -98,8 +135,8 @@
             <div class="sponsors">
                 <h2>Patrocinadores</h2>
                 <div>
-                    <img alt="logo-soulcode" src="images/logo-soulcode.png"/>
-                    <img alt="logo-pagbank" src="images/logo-pagbank.png"/>
+                    <img alt="logo-soulcode" src="/images/logo-soulcode.png"/>
+                    <img alt="logo-pagbank" src="/images/logo-pagbank.png"/>
                 </div>
             </div>
             <div class="git-list">
@@ -147,4 +184,5 @@
         <p>Copy Right © 2024 SoulCode Academy #ElasTech</p>
     </div>
 </footer>
+</body>
 </html>

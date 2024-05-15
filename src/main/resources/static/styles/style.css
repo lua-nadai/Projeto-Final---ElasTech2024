@@ -26,11 +26,19 @@
 body {
     width: 100vw;
     margin: 0;
-    padding: 0;
     background-color: var(--white);
     font-family: "Blinker", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 115px;
+
+}
+
+main {
+    top: 70px;
+    width: 100vw;
 }
 
 ul {
@@ -41,6 +49,10 @@ ul {
 
 a, :link, :visited {
     text-decoration: none;
+}
+
+button {
+    font-family: "Blinker", sans-serif;
 }
 
 /* Navbar */
@@ -104,67 +116,6 @@ nav {
     }
 }
 
-/* Main */
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-form {
-    max-width: 500px;
-    margin: 0 auto;
-
-    .form-register, .form-login {
-        background-color: #f4f4f4; /* Cor de fundo do quadrado */
-        width: fit-content; /* Define a largura do elemento para se ajustar ao conteúdo */
-        margin: 20px auto 20px; /* Margem superior e inferior de 20 pixels e centraliza horizontalmente */
-        padding: 20px 60px; /* Espaçamento interno aumentado (20px acima e abaixo, 60px à direita e à esquerda) */
-        border-radius: 5px; /* Borda arredondada */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
-        display: flex; /* Usar flexbox */
-        flex-direction: column; /* Colocar os itens em coluna */
-        align-items: center; /* Centralizar verticalmente */
-        justify-content: center; /* Centralizar horizontalmente */
-        text-align: center;
-    }
-
-    a {
-        margin-top: 5px;
-    }
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button[type="submit"] {
-    background-color: var(--p4);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: var(--p5);
-}
-
 /* Page Home */
 #home {
     top: 70px;
@@ -223,6 +174,290 @@ button[type="submit"]:hover {
     }
 }
 
+/* Page Login */
+
+#login {
+    height: calc(100vh - 70px - 115px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    section {
+        background-color: var(--n0);
+        width: 500px;
+        height: 400px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .title-login {
+            text-align: center;
+
+            h1 {
+                font-size: 2em;
+                color: var(--p5);
+                margin: 0 0 20px;
+            }
+
+            p {
+                margin: 15px 0 0;
+                font-size: 1.1em;
+                color: var(--n4);
+            }
+        }
+
+        .form-login-container {
+            width: 350px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+
+            form {
+                max-width: 500px;
+                min-width: 250px;
+                margin: 0 auto;
+
+                label {
+                    display: block;
+                    margin: 10px 0;
+                    font-weight: bold;
+                }
+
+                input[type="text"],
+                input[type="email"],
+                input[type="password"] {
+                    width: 250px;
+                    padding: 10px 5px;
+                    border-radius: 10px;
+                    border: 1px solid var(--p3);
+                }
+
+                input:focus{
+                   outline: 1px solid var(--p4);
+                }
+            }
+        }
+
+        .btn-login-container {
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            button[type="submit"] {
+                background-color: var(--p4);
+                color: var(--white);
+                padding: 10px 20px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 1em;
+            }
+
+            button[type="submit"]:hover {
+                background-color: var(--p5);
+            }
+        }
+    }
+}
+
+/* Page Register */
+
+#register {
+    height: calc(100vh - 70px - 115px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    section {
+        background-color: var(--n0);
+        width: 500px;
+        height: 550px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .title-register {
+            text-align: center;
+
+            h1 {
+                font-size: 2em;
+                color: var(--p5);
+                margin: 0 0 20px;
+            }
+
+            p {
+                margin: 15px 0 0;
+                font-size: 1.1em;
+                color: var(--n4);
+            }
+        }
+
+        .form-register-container {
+            width: 350px;
+            height: 450px;
+
+
+            form {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                max-width: 500px;
+                min-width: 250px;
+                height: 100%;
+                margin: 0 auto;
+
+                label {
+                    display: block;
+                    margin: 10px 0;
+                    font-weight: bold;
+                }
+
+                input[type="text"],
+                input[type="email"],
+                input[type="password"] {
+                    width: 250px;
+                    padding: 10px 0 10px 5px;
+                    border-radius: 10px;
+                    border: 1px solid var(--p3);
+                }
+
+                input:focus{
+                   outline: 1px solid var(--p4);
+                }
+
+                select {
+                    width: 250px;
+                    padding: 10px 5px;
+                    border-radius: 10px;
+                    border: 1px solid var(--p3);
+                }
+
+                select:focus{
+                   outline: 1px solid var(--p4);
+                }
+            }
+        }
+
+        button[type="submit"] {
+            background-color: var(--p4);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--p5);
+        }
+    }
+}
+
+
+/* Page About */
+
+#about {
+    top: 70px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h1 {
+        color: var(--p5);
+        font-size: 2em;
+    }
+
+    section {
+        width: 90vw;
+        height: 200px;
+        background-color: var(--n1);
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+       margin: 10px 0;
+
+        .dev-container {
+            width: 400px;
+            display: flex;
+
+            .img-jana-about {
+                width: 200px;
+                height: 200px;
+                border-radius: 10px 0 0 10px;
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    height: 200px;
+                    position: absolute;
+                    left: -15px;
+                    top: 0;
+                }
+            }
+
+            .img-dev-about {
+                width: 200px;
+                height: 200px;
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    height: 200px;
+                    position: absolute;
+                    left: 25px;
+                    top: 0;
+                }
+            }
+
+            .info-dev-about {
+                width: 160px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+
+                h2 {
+                    color: var(--p4);
+                    margin: 0;
+                }
+
+                a, :link, :visited {
+                    text-decoration: none;
+                    color: var(--n3);
+                }
+            }
+
+
+        }
+
+        span {
+            height: 180px;
+            border: 1px solid var(--n3);
+            margin: 0 10px;
+        }
+
+        .dev-text {
+            text-align: center;
+            width: 100%;
+        }
+    }
+}
+
 /* Page Technical */
 
 #technical {
@@ -234,14 +469,13 @@ button[type="submit"]:hover {
     align-items: center;
     justify-content: space-around;
 
-    article {
+    section {
         width: 90%;
         height: 350px;
         background-color: var(--n0);
         border-radius: 10px;
         border: 1px solid var(--p5);
         text-align: center;
-
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -288,7 +522,7 @@ button[type="submit"]:hover {
     align-items: center;
     justify-content: space-around;
 
-    article {
+    section {
         width: 90%;
         height: 700px;
         background-color: var(--n0);
@@ -399,13 +633,12 @@ footer {
     margin: 0;
     width: 100%;
     height: 110px;
-    position: absolute;
-    bottom: 0;
-    align-items: center;
-    color: #FFFFFF;
     padding: 5px 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
 
     p {
         margin: 0;
@@ -442,6 +675,10 @@ footer {
             height: 90px;
             padding: 0 10px;
             text-align: center;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: space-around;
 
             a, :link, :visited {
                 color: var(--white);
@@ -462,6 +699,11 @@ footer {
             flex-direction: row;
 
             .sponsors {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+
                 h2 {
                     font-size: 1.2em;
                     margin: 0;
@@ -505,5 +747,11 @@ footer {
             height: 70px;
             border: 0.5px solid var(--white);
          }
+    }
+
+    .copy-footer {
+        font-size: 0.9em;
+        font-weight: lighter;
+        margin-top: 4px;
     }
 }

@@ -6,10 +6,12 @@ import com.soulcode.projetofinal.repositories.PersonRepository;
 import com.soulcode.projetofinal.repositories.StatusRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,6 +101,52 @@ public class SupportRequestService {
 
     public List<SupportRequest> getRequestsWithStatus(int status) {
         return supportRequestRepository.findByStatusId(status);
+    }
+
+
+    public List<SupportRequest> findAvaibleRequests(){
+        List<SupportRequest> supportRequests = supportRequestRepository.findAll();
+        List<SupportRequest> supportRequestsAvaible = new ArrayList<>();
+
+        for (SupportRequest request : supportRequests) {
+            if (request.getStatus().getName().equals("Aguardando Técnico")) {
+                supportRequestsAvaible.add(request);
+            }
+        }
+        return supportRequestsAvaible;
+
+    }
+
+    public List<SupportRequest> findRequestsInProgress(){
+        List<SupportRequest> supportRequests = supportRequestRepository.findAll();
+        List<SupportRequest> supportRequestsInProgress = new ArrayList<>();
+
+        for (SupportRequest request : supportRequests) {
+            if (!request.getStatus().getName().equals("Aguardando Técnico")) {
+                supportRequestsInProgress.add(request);
+            }
+        }
+
+        return supportRequestsInProgress;
+
+    }
+
+    public List<SupportRequest> findRequestsInProgressByTech(int techId){
+        List<SupportRequest> supportRequestsInProgress = findRequestsInProgress();
+        List<SupportRequest> supportRequestsInProgressByTech = new ArrayList<>();
+
+        for (SupportRequest request : supportRequestsInProgress) {
+            if (request.getTechnician() != null && request.getTechnician().getId() == techId) {
+                supportRequestsInProgressByTech.add(request);
+            }
+        }
+        return supportRequestsInProgressByTech;
+    }
+
+    @Transactional
+    public void deleteTicketsByDepartmentId(int departmentId) {
+        // Chama o método no repositório para excluir os tickets associados a um departamento pelo ID do departamento
+        supportRequestRepository.deleteByDepartmentId(departmentId);
     }
 }
 

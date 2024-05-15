@@ -4,17 +4,24 @@ import com.soulcode.projetofinal.models.Administrato;
 import com.soulcode.projetofinal.models.Department;
 import com.soulcode.projetofinal.models.SupportRequest;
 import com.soulcode.projetofinal.services.AdministratoService;
+import com.soulcode.projetofinal.services.SupportRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -28,6 +35,10 @@ public class AdministratoController {
 
     @Autowired
     private UserController userController;
+
+    @Autowired
+    private SupportRequestService supportRequestService;
+
 
     @GetMapping("/{id}")
     public Administrato getAdministratorById(@PathVariable Long id) {
@@ -60,13 +71,13 @@ public class AdministratoController {
     }
 
     @GetMapping("/technician-page")
-    public String technicianPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request) {
-        return technicianController.technicianPage(name, model, request);
+    public String technicianPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request, HttpSession session) {
+        return technicianController.technicianPage(name, model, request, session);
     }
 
     @GetMapping("/request-details/{id}")
-    public String requestDetails(@PathVariable("id") int id, Model model) {
-        return technicianController.requestDetails(id, model);
+    public String requestDetails(@PathVariable("id") int id, Model model, HttpSession session) {
+        return technicianController.requestDetails(id, model, session);
     }
 
     @PostMapping("/change-status")
@@ -104,21 +115,76 @@ public class AdministratoController {
     }
 
     @GetMapping("/user-page")
-    public String userPage(@RequestParam("name") String name, Model model) {
-        return userController.userPage(name, model);
+    public String userPage(Model model, HttpSession httpSession) {
+        return userController.userPage(model, httpSession);
+    }
+
+    @GetMapping("/admin-dpto")
+    public String adminDepartmentPage(@RequestParam(required = false) String departmentName, Model model) {
+
+        //retornando lista de departamentos para a dashboard
+        List<Department> departments = administratoService.getAllDepartments();
+        model.addAttribute("departments", departments);
+
+        return "admin-dpto"; // ou qualquer outra coisa que você precise retornar
     }
 
     @PostMapping("/add-department")
     public String addDepartment(@RequestParam String departmentName) {
-        return "redirect:/admin/dashboard";
+        administratoService.addDepartment(departmentName);
+        return "redirect:/admin/admin-dpto";
     }
+
+    @GetMapping("/departments")
+    public String getAllDepartments(Model model) {
+        List<Department> departments = administratoService.getAllDepartments();
+        model.addAttribute("departments", departments);
+        return "admin-dpto";
+    }
+
+    @PostMapping("/delete-department")
+    public String deleteDepartmentAndTickets(@RequestParam int departmentId) {
+        administratoService.deleteDepartmentAndTickets(departmentId);
+        return "redirect:/admin/departments";
+    }
+
 
     @GetMapping("/dashboard")
     public String administratorDashboard(Model model) {
-        model.addAttribute("openRequestsCount", administratoService.getOpenRequestsCount());
-        model.addAttribute("inProgressRequestsCount", administratoService.getInProgressRequestsCount());
-        model.addAttribute("waitingRequestsCount", administratoService.getWaitingRequestsCount());
+        //retornando lista de departamentos para a dashboard
+        List<Department> departments = administratoService.getAllDepartments();
+        model.addAttribute("departments", departments);
+
+        String openRequestsCount = String.valueOf(administratoService.getOpenRequestsCount());
+        String inProgressRequestsCount = String.valueOf(administratoService.getInProgressRequestsCount());
+        String anotherDepartRequestsCount = String.valueOf(administratoService.getAnotherDepartmentRequestsCount());
+        String completedRequestsCount = String.valueOf(administratoService.getCompletedRequestsCount());
+
+
+        model.addAttribute("openRequestsCount", openRequestsCount);
+        model.addAttribute("inProgressRequestsCount", inProgressRequestsCount);
+        model.addAttribute("anotherDepartRequestsCount", anotherDepartRequestsCount);
+        model.addAttribute("completedRequestsCount", completedRequestsCount);
 
         return "admin-dashboard";
     }
+
+
+    @GetMapping("/admin-page")
+    public String adminPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request) {
+        List<SupportRequest> availableRequests = supportRequestService.findAvaibleRequests();
+        List<SupportRequest> requestsInProgess = supportRequestService.findRequestsInProgress();
+
+        model.addAttribute("availableRequests", availableRequests);
+        model.addAttribute("requestsInProgess", requestsInProgess);
+        model.addAttribute("name", name);
+
+        return "admin-page";
+    }
+
+    public List<SupportRequest> findRequestsInProgress(){
+        List<SupportRequest> requestsInProgress = supportRequestService.findRequestsInProgress();
+        return requestsInProgress;
+    }
+
 }

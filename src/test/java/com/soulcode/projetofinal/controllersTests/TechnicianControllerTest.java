@@ -13,7 +13,6 @@ import com.soulcode.projetofinal.models.Person;
 import com.soulcode.projetofinal.models.Status;
 import com.soulcode.projetofinal.models.SupportRequest;
 import com.soulcode.projetofinal.repositories.StatusRepository;
-import com.soulcode.projetofinal.repositories.SupportRequestRepository;
 import com.soulcode.projetofinal.services.SupportRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

@@ -106,7 +106,7 @@ public class AdministratoController {
     }
 
     @PostMapping("/user-request-details")
-    public String saveRequest(@RequestParam("priority") int priority,
+    public String saveRequest(@RequestParam("priority") Priority priority,
                               @RequestParam("title") String title,
                               @RequestParam("description") String description,
                               @RequestParam("department") Department department,

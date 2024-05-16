@@ -17,7 +17,9 @@ public class SupportRequest {
 
     private String description;
 
-    private int priority;
+    @ManyToOne
+    @JoinColumn(name = "priority_id")
+    private Priority priority;
 
     private LocalDateTime startDate;
 
@@ -61,11 +63,11 @@ public class SupportRequest {
         this.description = description;
     }
 
-    public int getPriority() {
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 

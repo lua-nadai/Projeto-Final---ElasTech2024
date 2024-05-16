@@ -78,7 +78,8 @@ nav {
     ul {
         display: flex;
         align-items: center;
-        margin-right: 1em;
+        padding: 0;
+        margin: 0;
 
         a {
             background-color: var(--p4);
@@ -94,15 +95,14 @@ nav {
 
         li a, :link, :visited {
             color: #000;
-            padding: .4em .6em;
+            padding: 10px 20px;
         }
     }
 
     .nav-info {
-        width: 400px;
+        width: 650px;
         display: flex;
         align-items: center;
-        justify-content: space-around;
 
         h2 {
             margin: 0;
@@ -114,6 +114,14 @@ nav {
             text-align: center;
         }
     }
+
+    .nav-user {
+        width: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
 }
 
 /* Page Home */
@@ -365,7 +373,6 @@ nav {
     }
 }
 
-
 /* Page About */
 
 #about {
@@ -467,13 +474,23 @@ nav {
     align-items: center;
     justify-content: space-around;
 
+    .dashboard-iframe {
+        border-radius: 10px;
+        border: 1px solid var(--n2);
+    }
+
+    .dashboard-container{
+        height: 300px;
+    }
+
     section {
         width: 90%;
-        height: 700px;
+        height: 360px;
         background-color: var(--n0);
         border-radius: 10px;
         border: 1px solid var(--p5);
         text-align: center;
+        margin: 10px;
 
         display: flex;
         align-items: center;
@@ -488,7 +505,7 @@ nav {
         .table-container {
             background: var(--white);
             width:90%;
-            height: 620px;
+            height: 280px;
             border-radius: 10px;
             border: 1px solid var(--n2);
             overflow: auto;
@@ -511,16 +528,18 @@ nav {
 }
 
 /* Modal Admin */
-#modal-dpto {
-    label {
-        display: block;
-        margin: 10px 0;
-        font-weight: bold;
+#modal-nav-dpto {
+
+    .modal-width {
+        max-width: 650px;
+    }
+
+    .modal-height {
+        height: 600px;
     }
 
     .modal-header {
         text-align: center;
-
 
         h1 {
             margin: 0;
@@ -533,90 +552,269 @@ nav {
             background-color: transparent;
             color: var(--n5);
             cursor: pointer;
-
             font-size: 1.5em;
         }
     }
 
-    .md-info {
-        padding: 0 20px;
+}
 
-        span {
-            color: var(--n4);
-            font-weight: normal;
-        }
+#modal-dpto {
+    padding: 0;
 
-        select {
-            width: 250px;
-            padding: 10px 5px;
-            border-radius: 10px;
-            border: 1px solid var(--p3);
-        }
+    article{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-        select:focus{
-           outline: 1px solid var(--p4);
-        }
-    }
-
-    .md-descricao {
-        padding: 0 20px;
-
-        input[type="text"] {
-            width: 250px;
-            padding: 10px 0 10px 5px;
-            border-radius: 10px;
-            border: 1px solid var(--p3);
-        }
-
-        textarea {
-            resize: none;
-            height: 80px;
+        .add-container{
             width: 400px;
-            padding: 10px 5px 10px 5px;
-            border-radius: 10px;
-            border: 1px solid var(--p3);
+
+            label {
+                display: block;
+                margin: 10px 0;
+                font-weight: bold;
+                font-size: 1.3em;
+            }
+
+            input[type="text"] {
+                width: 250px;
+                padding: 10px 0 10px 5px;
+                border-radius: 10px;
+                border: 1px solid var(--p3);
+            }
+
+            input:focus {
+               outline: 1px solid var(--p4);
+            }
+
+            .btn-container {
+                display: flex;
+                align-items: center;
+
+                .btn-confirm {
+                    padding: 10px;
+                    font-size: 1em;
+                    cursor: pointer;
+                    background-color: var(--p4);
+                    color: #fff!important;
+                    border-radius: 10px;
+                    border: none;
+                    margin: 5px;
+                    transition: background-color 0.3s ease;
+                }
+
+                .btn-confirm:hover {
+                    background-color: var(--p5);
+                }
+            }
+
+
         }
 
-        input:focus, textarea:focus {
-           outline: 1px solid var(--p4);
-        }
+        .table-container {
+            width: 400px;
 
-        p {
-            color: var(--n4);
-            font-weight: lighter;
-            margin-top: 0;
+            h1 {
+                font-size: 1.4em;
+            }
+
+            table {
+                border-collapse: collapse;
+
+                th {
+                    border-bottom: 1px solid var(--n1);
+                    font-size: 1.2em;
+                }
+
+                th, td {
+                    width: 200px;
+                    padding: 10px 0;
+                }
+
+                .td-btn {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .btn-delete {
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    background-color: var(--r3);
+                    color: #fff!important;
+                    border-radius: 10px;
+                    border: none;
+                    margin: 5px;
+                    transition: background-color 0.3s ease;
+                }
+
+                .btn-delete:hover{
+                    background-color: var(--r4);
+                }
+            }
         }
     }
 
-    .modal-footer {
-        .btn-confirm {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: var(--p4);
-            color: #fff!important;
-            border-radius: 10px;
+}
+
+#modal-nav-prt {
+
+    .modal-width {
+        max-width: 650px;
+    }
+
+    .modal-height {
+        height: 600px;
+    }
+
+    .modal-header {
+        text-align: center;
+
+        h1 {
+            margin: 0;
+        }
+
+        .btn-close {
+            margin: 0;
+            padding: 0;
             border: none;
-            margin: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-confirm:hover {
-            background-color: var(--p5);
-        }
-
-        .btn-cancel {
-            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--n5);
             cursor: pointer;
-            background-color: var(--r3);
-            color: #fff!important;
-            border-radius: 10px;
-            border: none;
-            margin: 5px;
-            transition: background-color 0.3s ease;
+            font-size: 1.5em;
+        }
+    }
+
+}
+
+#modal-prt {
+    padding: 0;
+
+    article{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .add-container{
+            width: 400px;
+
+            label {
+                display: block;
+                margin: 10px 0;
+                font-weight: bold;
+                font-size: 1.3em;
+            }
+
+            input[type="text"] {
+                width: 250px;
+                padding: 10px 0 10px 5px;
+                border-radius: 10px;
+                border: 1px solid var(--p3);
+            }
+
+            input:focus {
+               outline: 1px solid var(--p4);
+            }
+
+            .btn-container {
+                display: flex;
+                align-items: center;
+
+                .btn-confirm {
+                    padding: 10px;
+                    font-size: 1em;
+                    cursor: pointer;
+                    background-color: var(--p4);
+                    color: #fff!important;
+                    border-radius: 10px;
+                    border: none;
+                    margin: 5px;
+                    transition: background-color 0.3s ease;
+                }
+
+                .btn-confirm:hover {
+                    background-color: var(--p5);
+                }
+            }
+
+
         }
 
-        .btn-cancel:hover{
-            background-color: var(--r4);
+        .table-container {
+            width: 400px;
+
+            h1 {
+                font-size: 1.4em;
+            }
+
+            table {
+                border-collapse: collapse;
+
+                th {
+                    border-bottom: 1px solid var(--n1);
+                    font-size: 1.2em;
+                }
+
+                th, td {
+                    width: 200px;
+                    padding: 10px 0;
+                }
+
+                .td-btn {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .btn-delete {
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    background-color: var(--r3);
+                    color: #fff!important;
+                    border-radius: 10px;
+                    border: none;
+                    margin: 5px;
+                    transition: background-color 0.3s ease;
+                }
+
+                .btn-delete:hover{
+                    background-color: var(--r4);
+                }
+            }
+        }
+    }
+
+}
+
+/* Dashboard Adm */
+#dashboard-adm {
+    padding: 0;
+
+    section {
+        display: flex;
+        justify-content: space-evenly;
+
+        .request-container {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+
+            .circle {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                font-size: 3em;
+                color: var(--n4);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .green { background-color: #4EA93B; }
+            .yellow { background-color: #F5F649; }
+            .blue { background-color: var(--p2); }
         }
     }
 }
@@ -626,13 +824,13 @@ nav {
 #technical {
     top: 70px;
     width: 100vw;
-    height: calc(100vh - 70px - 115px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
 
     section {
+        margin: 10px;
         width: 90%;
         height: 350px;
         background-color: var(--n0);

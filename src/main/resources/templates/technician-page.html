@@ -17,7 +17,7 @@
         <div class="brand">
             <a href="/"><h1>SoulDesk</h1></a>
         </div>
-        <div class="nav-info">
+        <div class="nav-info nav-user">
             <h2>Olá, <span th:text="${name}"></span>!</h2>
             <ul>
                 <li>
@@ -30,7 +30,7 @@
 <main>
     <article id="technical">
         <section>
-            <h1>Lista de Chamados</h1>
+            <h1>Lista de Chamados Disponíveis</h1>
             <div class="table-container">
                 <table>
                     <tbody>
@@ -100,6 +100,31 @@
                                 <button type="submit" class="btn-confirm" id="btn-select">Confirmar</button>
                             </form>
                         </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section>
+            <h1>Lista de Chamados Finalizados</h1>
+            <div class="table-container">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Data</th>
+                        <th>Titulo</th>
+                        <th>Departamento</th>
+                        <th>Prioridade</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr th:each="supportRequest, row : ${availableFinished}">
+                        <td th:text="${supportRequest.startDate}"></td>
+                        <td th:text="${supportRequest.title}"></td>
+                        <td th:text="${supportRequest.department.name}"></td>
+                        <td th:text="${supportRequest.priority}"></td>
+                        <td th:text="${supportRequest.description}"></td>
+                        <td th:text="${supportRequest.status.name}"></td>
                     </tr>
                     </tbody>
                 </table>

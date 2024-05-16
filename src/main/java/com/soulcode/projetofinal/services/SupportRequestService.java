@@ -32,7 +32,7 @@ public class SupportRequestService {
         return (Person) session.getAttribute("loggedUser");
     }
 
-    public SupportRequest registerRequest(String title, String description, int priority, LocalDateTime startDate,
+    public SupportRequest registerRequest(String title, String description, Priority priority, LocalDateTime startDate,
                                        Department department, Status status, Person technician, Person user) {
         SupportRequest request = new SupportRequest();
         request.setTitle(title);
@@ -62,6 +62,9 @@ public class SupportRequestService {
         Type clientType = new Type();
         clientType.setId(3);
 
+        Priority priority = new Priority();
+        priority.setId(1);
+
         Person user1 = personRepository.findByEmail("jonhlenon@user.com");
         if (user1 == null) {
             user1 = new Person();
@@ -71,8 +74,8 @@ public class SupportRequestService {
             user1.setType(clientType);
             personRepository.save(user1);
 
-            registerRequest("Problema no monitor", "O monitor não liga", 2, LocalDateTime.now(), adminDepartment, awaitingStatus, null, user1);
-            registerRequest("Problema na impressora", "A impressora não está imprimindo", 1, LocalDateTime.now(), itDepartment, awaitingStatus, null, user1);
+            registerRequest("Problema no monitor", "O monitor não liga", priority, LocalDateTime.now(), adminDepartment, awaitingStatus, null, user1);
+            registerRequest("Problema na impressora", "A impressora não está imprimindo", priority, LocalDateTime.now(), itDepartment, awaitingStatus, null, user1);
         }
 
         Person user2 = personRepository.findByEmail("marialemos@user.com");
@@ -84,9 +87,9 @@ public class SupportRequestService {
             user2.setType(clientType);
             personRepository.save(user2);
 
-            registerRequest("Problema no teclado", "Teclado não funciona", 3, LocalDateTime.now(), adminDepartment, awaitingStatus, null, user2);
-            registerRequest("Problema na conexão de rede", "A conexão caiu", 4, LocalDateTime.now(), itDepartment, awaitingStatus, null, user2);
-            registerRequest("Problema no mouse", "O lado direito do mouse não funciona", 1, LocalDateTime.now(), itDepartment, awaitingStatus, null, user2);
+            registerRequest("Problema no teclado", "Teclado não funciona", priority, LocalDateTime.now(), adminDepartment, awaitingStatus, null, user2);
+            registerRequest("Problema na conexão de rede", "A conexão caiu", priority, LocalDateTime.now(), itDepartment, awaitingStatus, null, user2);
+            registerRequest("Problema no mouse", "O lado direito do mouse não funciona", priority, LocalDateTime.now(), itDepartment, awaitingStatus, null, user2);
         }
     }
 

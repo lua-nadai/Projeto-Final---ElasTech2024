@@ -41,7 +41,7 @@
                 <form action="/register-user" method="POST" >
                     <div>
                         <label>Nome:</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" name="name" id="name" maxlength="14" required>
                         <label>E-mail:</label>
                         <input type="email" name="email" id="email" required>
                         <label>Senha:</label>
@@ -56,6 +56,12 @@
                     </div>
                     <div>
                         <button type="submit">Cadastrar</button>
+                    </div>
+                    <div th:text="${errorPassword}">
+                        <p style="color: red;">As senhas não coincidem.</p>
+                    </div>
+                    <div th:text="${errorEmail}">
+                        <p style="color: red;">Esse email já está em uso. Por favor escolha outro.</p>
                     </div>
                 </form>
             </div>

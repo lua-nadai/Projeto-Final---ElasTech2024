@@ -4,18 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulDesk</title>
-    <link rel="stylesheet" href="styles/style.css">
-
-
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
-<body>
-
-<div>
-    <h2>Chamados abertos: <span th:text="${openRequestsCount}"></span>!</h2>
-    <h2>Chamados em progresso: <span th:text="${inProgressRequestsCount}"></span>!</h2>
-    <h2>Chamados <span th:text="${anotherDepartRequestsCount}"></span>!</h2>
-    <h2>Chamados <span th:text="${completedRequestsCount}"></span>!</h2>
-</div>
-
+<body id="dashboard-adm">
+    <section>
+    <div class="request-container">
+        <h2>Chamados abertos:</h2>
+        <div class="circle" th:class="'circle ' + green">
+            <span th:text="${openRequestsCount}"></span>
+        </div>
+    </div>
+    <div class="request-container">
+        <h2>Chamados em progresso:</h2>
+        <div class="circle" th:class="'circle ' + yellow">
+            <span th:text="${inProgressRequestsCount}"></span>
+        </div>
+    </div>
+    <div class="request-container">
+        <h2>Chamados Finalizados:</h2>
+        <div class="circle" th:class="'circle ' + blue">
+            <span th:text="${completedRequestsCount}"></span>
+        </div>
+    </div>
+</section>
+<script>
+    const openRequestsColor = 'green';
+    const inProgressRequestsColor = 'orange';
+    const anotherDepartRequestsColor = 'blue';
+    const completedRequestsColor = 'purple';
+</script>
 </body>
 </html>

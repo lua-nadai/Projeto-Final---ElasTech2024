@@ -7,11 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
-<<<<<<< HEAD
-=======
-    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
->>>>>>> e9c83456ee71148ff0e63dbfbffc9f62a625c068
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
@@ -26,63 +21,56 @@
 
                 <li>
                     <!-- Button trigger modal -->
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-dpto">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-nav-dpto">
                         Mudar Departamentos
                     </a>
                     <!-- Modal -->
-                    <div class="modal fade" id="modal-dpto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                    <div class="modal fade" id="modal-nav-dpto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-width">
+                            <div class="modal-content modal-height">
                                 <div class="modal-header">
                                     <h1 id="exampleModalLabel">Alterações Administrativas</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                                 </div>
                                 <div class="modal-body">
-                                    <iframe src="/admin/admin-dpto" width="100%" height="210px" frameborder="0"></iframe>
+                                    <iframe src="/admin/admin-dpto" width="100%" height="100%" frameborder="0"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <!-- Modal End -->
                     <!-- Button trigger modal -->
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-priority">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-nav-prt">
                         Mudar Prioridades
                     </a>
                     <!-- Modal -->
-                    <div class="modal fade" id="modal-priority" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                    <div class="modal fade" id="modal-nav-prt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-width">
+                            <div class="modal-content modal-height">
                                 <div class="modal-header">
                                     <h1 id="exampleModalLabel2">Alterações Administrativas</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                                 </div>
                                 <div class="modal-body">
-                                    <iframe src="/admin/admin-priority" width="100%" height="210px" frameborder="0"></iframe>
+                                    <iframe src="/admin/admin-priority" width="100%" height="100%" frameborder="0"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal End -->
                     <a href="/">Sair</a>
                 </li>
             </ul>
         </div>
-
-        <a th:href="@{/admin-dpto}">Ir para página de Departamentos</a>
     </nav>
 </header>
 <main>
-<<<<<<< HEAD
-    <section id="admin">
-        <h1>Dashboard</h1>
-            <iframe src="/admin/dashboard" width="100%" height="210px" frameborder="0"></iframe>
-        </div>
-        <article>
-=======
     <article id="admin">
-        <section>
+        <section class="dashboard-container">
             <h1>Dashboard</h1>
-            <iframe src="/admin/dashboard" width="100%" height="210px" frameborder="0"></iframe>
->>>>>>> e9c83456ee71148ff0e63dbfbffc9f62a625c068
+            <iframe src="/admin/dashboard" width="90%" height="210px" frameborder="0" class="dashboard-iframe"></iframe>
+        </section>
+        <section>
             <h1>Lista de Chamados</h1>
             <div class="table-container">
                 <table>
@@ -132,58 +120,73 @@
                 </table>
             </div>
         </section>
+        <section>
+            <h1>Lista de Chamados Finalizado</h1>
+            <div class="table-container">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Data</th>
+                        <th>Titulo</th>
+                        <th>Departamento</th>
+                        <th>Prioridade</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr th:each="supportRequest, row : ${requestsFinished}">
+                        <td th:text="${supportRequest.startDate}"></td>
+                        <td th:text="${supportRequest.title}"></td>
+                        <td th:text="${supportRequest.department.name}"></td>
+                        <td th:text="${supportRequest.priority}"></td>
+                        <td th:text="${supportRequest.description}"></td>
+                        <td th:text="${supportRequest.status.name}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </article>
 </main>
 <footer>
     <div class="footer-container">
         <div class="footer-about">
             <a href="/about">Sobre nós</a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu ultricies libero. Proin nec magna
-                rutrum, cursus lorem vitae, rhoncus nisl. Etiam est ipsum, consectetur a ex sed, tempus luctus orci.</p>
+            <p>
+                Com a eficiência e a excelência, a SoulDesk é apaixonada por proporcionar soluções inovadoras e eficazes para a gestão de chamados de TI.
+            </p>
         </div>
         <span></span>
         <div class="footer-content">
             <div class="sponsors">
-                <h2>Patrocinadores</h2>
+                <h2>Parceiros</h2>
                 <div>
                     <img alt="logo-soulcode" src="/images/logo-soulcode.png"/>
-                    <img alt="logo-pagbank" src="/images/logo-pagbank.png"/>
+                    <img alt="logo-pagbank"  src="/images/logo-pagbank.png"/>
                 </div>
             </div>
             <div class="git-list">
                 <ul>
                     <li class="git-list-center">
                         <a href="https://github.com/tavaresjana">Janaina Tavares </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-github" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
                         </svg>
                     </li>
                     <li class="git-list-center">
                         <a href="https://github.com/Knogueira">Karen Nogueira </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-github" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
                         </svg>
                     </li>
                     <li class="git-list-center">
                         <a href="https://github.com/lua-nadai">Luana Nadai </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-github" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
                         </svg>
                     </li>
                     <li class="git-list-center">
                         <a href="https://github.com/MyListon">Myriam Liston </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-github" viewBox="0 0 16 16">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-                        </svg>
-                    </li>
-                    <li class="git-list-center">
-                        <a href="#">Natalia Souza </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-github" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
                         </svg>
                     </li>
@@ -191,7 +194,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="copy-footer">
         <p>Copy Right © 2024 SoulCode Academy #ElasTech</p>
     </div>
 </footer>

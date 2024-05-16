@@ -39,6 +39,20 @@ public class SupportRequest {
     @JoinColumn(name = "user_id")
     private Person user;
 
+    public SupportRequest(){
+
+    }
+    public SupportRequest(String title, String description, Priority priority, LocalDateTime startDate, Department department, Status status, Person technician, Person user) {
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.startDate = startDate;
+        this.department = department;
+        this.status = status;
+        this.technician = technician;
+        this.user = user;
+    }
+
     public int getId() {
         return id;
     }

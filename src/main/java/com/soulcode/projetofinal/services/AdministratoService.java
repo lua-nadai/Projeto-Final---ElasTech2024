@@ -2,10 +2,9 @@ package com.soulcode.projetofinal.services;
 
 import com.soulcode.projetofinal.models.Administrato;
 import com.soulcode.projetofinal.models.Department;
-import com.soulcode.projetofinal.repositories.AdministratoRepository;
-import com.soulcode.projetofinal.repositories.DepartmentRepository;
-import com.soulcode.projetofinal.repositories.PersonRepository;
-import com.soulcode.projetofinal.repositories.SupportRequestRepository;
+import com.soulcode.projetofinal.models.Priority;
+import com.soulcode.projetofinal.repositories.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +27,9 @@ public class AdministratoService {
     private DepartmentRepository departmentRepository;
 
     @Autowired
+    private PriorityRepository priorityRepository;
+
+    @Autowired
     private SupportRequestService supportRequestService;
 
     @Autowired
@@ -39,7 +41,7 @@ public class AdministratoService {
 
     public Administrato getAdministratorById(Long id) {
         Optional<Administrato> administrator = administratoRepository.findById(id);
-        return administrator.orElse(null); // or throw an exception if not found
+        return administrator.orElse(null);
     }
 
     public Administrato createAdministrator(Administrato administrator) {
@@ -52,7 +54,7 @@ public class AdministratoService {
             updatedAdministrator.setId(id);
             return administratoRepository.save(updatedAdministrator);
         } else {
-            return null; // or throw an exception if not found
+            return null;
         }
     }
 
@@ -64,11 +66,34 @@ public class AdministratoService {
         administratoRepository.deleteById(id);
     }
 
+    public List<Department> getAllDepartments() {
+        return departmentRepository.findAll();
+    }
+
     public void addDepartment(String departmentName) {
         Department department = new Department();
         department.setName(departmentName);
         departmentRepository.save(department);
+    }
 
+    @Transactional
+    public void deleteDepartmentAndTickets(int departmentId) {
+        supportRequestRepository.deleteByDepartmentId(departmentId);
+        departmentRepository.deleteById(departmentId);
+    }
+
+    public List<Priority> getAllPriority() {
+        return priorityRepository.findAll();
+    }
+
+    public void addPriority(String priorityName) {
+        Priority priority = new Priority();
+        priority.setName(priorityName);
+        priorityRepository.save(priority);
+    }
+
+    public void deletePriority(int priorityId) {
+        priorityRepository.deleteById(priorityId);
     }
 
     public int getOpenRequestsCount() {
@@ -85,8 +110,4 @@ public class AdministratoService {
     public int getCompletedRequestsCount() {
         return supportRequestRepository.countCompletedRequests();
     }
-
-
-
-
 }

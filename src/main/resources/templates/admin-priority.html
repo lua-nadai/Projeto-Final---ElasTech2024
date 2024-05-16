@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulDesk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles/style-pg.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<form action="/admin/add-priority" method="post">
+    <label for="priorityName">Nome do Prioridade::</label>
+    <input type="text" id="priorityName" name="priorityName">
+    <button type="submit">Adicionar Prioridade:</button>
+</form>
+
+<main>
+    <section id="user">
+        <article>
+            <h1>Lista de Prioridades</h1>
+            <div class="table-container">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                    <tr  th:each="priority : ${priority}">
+                        <td th:text="${priority.id}"></td>
+                        <td th:text="${priority.name}"></td>
+                        <td>
+                            <form action="/admin/delete-priority" method="post">
+                                <input type="hidden" name="priorityId" th:value="${priority.id}" />
+                                <button type="submit">Excluir Prioridade</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </section>
+    </form>
+</main>
+</html>

@@ -27,4 +27,6 @@ public interface SupportRequestRepository extends JpaRepository<SupportRequest, 
     @Query("SELECT COUNT(*) FROM SupportRequest r WHERE r.status.name = 'Finalizado'")
     int countCompletedRequests();
 
+    void deleteByDepartmentId(int departmentId);
+
 }

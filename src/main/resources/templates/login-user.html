@@ -49,6 +49,9 @@
                     </div>
                     <div class="btn-login-container">
                         <button type="submit">Entrar</button>
+                        <div th:text="${error}">
+                            <p style="color: red;">Usuário ou senha inválidos.</p>
+                        </div>
                         <a href="/reset-password" class="button">Esqueci minha senha</a>
                         <br>
                         <br>

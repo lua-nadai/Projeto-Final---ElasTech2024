@@ -57,6 +57,12 @@
                     <div>
                         <button type="submit">Cadastrar</button>
                     </div>
+                    <div th:text="${errorPassword}">
+                        <p style="color: red;">As senhas não coincidem.</p>
+                    </div>
+                    <div th:text="${errorEmail}">
+                        <p style="color: red;">Esse email já está em uso. Por favor escolha outro.</p>
+                    </div>
                 </form>
             </div>
         </section>

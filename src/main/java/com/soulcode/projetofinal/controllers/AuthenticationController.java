@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.UUID;
 
@@ -21,16 +22,18 @@ public class AuthenticationController {
     @Autowired
     AuthenticationService authenticationService;
 
+
+
     @RequestMapping(value = "/register-user", method = RequestMethod.POST)
     public String save(@RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam String confirmPassword, @RequestParam int typeId, Model model) {
 
         if (authenticationService.checkIfEmailExists(email)) {
-            model.addAttribute("error", "This email is already in use. Please choose another one.");
+            model.addAttribute("errorEmail", "Esse email já está em uso. Por favor escolha outro.");
             return "register-user";
         }
 
         if (!authenticationService.confirmPassword(password, confirmPassword)) {
-            model.addAttribute("error", "Passwords do not match.");
+            model.addAttribute("errorPassword", "As senhas não coincidem");
             return "register-user";
         }
 
@@ -61,9 +64,11 @@ public class AuthenticationController {
                 return "redirect:/user-page?name=" + user.getName();
             }
         } else if (user != null && user.getEmail().equals(email)) {
-            model.addAttribute("error", "Incorrect password");
+            model.addAttribute("error", "Usuário ou senha inválidos.");
+            //redirectAttributes.addAttribute("error", true);
         } else {
-            model.addAttribute("error", "Incorrect email and password");
+            model.addAttribute("error", "Usuário ou senha inválidos.");
+            //redirectAttributes.addAttribute("error", true);
         }
 
         return "login-user";
@@ -76,8 +81,16 @@ public class AuthenticationController {
 
     @PostMapping("/reset-password")
     public String resetPassword(@RequestParam String email, @RequestParam String newPassword, Model model) {
-        authenticationService.resetPassword(email, newPassword);
-        return "redirect:/login-user";
+        Person user = personRepository.findByEmail(email);
+        if (user != null) {
+            authenticationService.resetPassword(email, newPassword);
+            return "redirect:/login-user";
+        } else {
+            model.addAttribute("errorNotFoundUser", "O e-mail fornecido não está associado a nenhum usuário.");
+            return "reset-password";
+        }
+       // authenticationService.resetPassword(email, newPassword);
+       // return "redirect:/login-user";
     }
 
 //    public void requestPasswordReset(String email, HttpServletRequest request) {

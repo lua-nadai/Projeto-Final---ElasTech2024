@@ -146,6 +146,20 @@ public class SupportRequestService {
         return supportRequestsInProgress;
     }
 
+    public List<SupportRequest> findRequestsFinished(){
+        List<SupportRequest> supportRequests = supportRequestRepository.findAll();
+        List<SupportRequest> supportRequestsFinished = new ArrayList<>();
+
+        for (SupportRequest request : supportRequests) {
+            String statusName = request.getStatus().getName();
+            if (statusName.equals("Finalizado")) {
+                supportRequestsFinished.add(request);
+            }
+        }
+
+        return supportRequestsFinished;
+    }
+
     public List<SupportRequest> findRequestsInProgressByTech(int techId){
         List<SupportRequest> supportRequestsInProgress = findRequestsInProgress();
         List<SupportRequest> supportRequestsInProgressByTech = new ArrayList<>();
@@ -157,6 +171,7 @@ public class SupportRequestService {
         }
         return supportRequestsInProgressByTech;
     }
+
 
     @Transactional
     public void deleteTicketsByDepartmentId(int departmentId) {

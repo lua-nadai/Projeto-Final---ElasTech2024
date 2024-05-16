@@ -43,11 +43,12 @@ public class TechnicianController {
         }
 
         List<SupportRequest> availableRequests = supportRequestService.findAvaibleRequests();
+        List<SupportRequest> availableFinished= supportRequestService.findRequestsFinished();
         List<SupportRequest> technicianRequests = supportRequestService.findRequestsInProgressByTech(loggedUser.getId());
 
 
         model.addAttribute("availableRequests", availableRequests);
-       /* model.addAttribute("requestsInProcess", requestsInProcess);*/
+        model.addAttribute("availableFinished", availableFinished);
         model.addAttribute("technicianRequests", technicianRequests);
         model.addAttribute("name", loggedUser.getName());
 

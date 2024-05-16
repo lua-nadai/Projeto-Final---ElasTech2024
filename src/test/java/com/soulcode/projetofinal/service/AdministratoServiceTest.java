@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -96,7 +97,7 @@ public class AdministratoServiceTest {
     }
 
     @Test
-    void testGetAllPriority() {
+    void getAllPriorityTest() {
         Priority priority1 = new Priority();
         priority1.setName("Baixo");
         Priority priority2 = new Priority();
@@ -105,6 +106,7 @@ public class AdministratoServiceTest {
         priority3.setName("Alto");
         Priority priority4 = new Priority();
         priority4.setName("Urgente");
+        List<Priority> listPriority = Arrays.asList(priority1,priority2,priority3,priority4);
         when(priorityRepository.findAll()).thenReturn(Arrays.asList(priority1, priority2, priority3, priority4));
 
         List<Priority> getAllPriorities = priorityRepository.findAll();
@@ -114,6 +116,7 @@ public class AdministratoServiceTest {
         assertEquals("Médio", getAllPriorities.get(1).getName());
         assertEquals("Alto", getAllPriorities.get(2).getName());
         assertEquals("Urgente", getAllPriorities.get(3).getName());
+        assertTrue(getAllPriorities.containsAll(listPriority));
     }
 
     @Test

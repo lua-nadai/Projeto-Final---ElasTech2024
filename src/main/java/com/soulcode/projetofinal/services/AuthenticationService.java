@@ -40,11 +40,9 @@ public class AuthenticationService {
     }
 
     public void resetPassword(String email, String newPassword) {
-        // Verificar se o e-mail fornecido está associado a um usuário existente
         Person user = personRepository.findByEmail(email);
         if (user != null) {
-            // Atualizar a senha do usuário
-            user.setPassword(newPassword); // Aqui você deve garantir que a senha seja armazenada de forma segura, como um hash
+            user.setPassword(newPassword);
             personRepository.save(user);
         }
     }

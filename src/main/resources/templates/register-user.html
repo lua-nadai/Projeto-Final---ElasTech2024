@@ -38,6 +38,14 @@
                 <p>Preencha as informações abaixo para completar o cadastro:</p>
             </div>
             <div class="form-register-container">
+                <div th:if="${errorPassword != null and errorPassword != '' || errorEmail != null and errorEmail != ''}" class="warning">
+                    <div th:text="${errorPassword}">
+                        <p style="color: red;">As senhas não coincidem.</p>
+                    </div>
+                    <div th:text="${errorEmail}">
+                        <p style="color: red;">Esse email já está em uso. Por favor escolha outro.</p>
+                    </div>
+                </div>
                 <form action="/register-user" method="POST" >
                     <div>
                         <label>Nome:</label>
@@ -56,12 +64,6 @@
                     </div>
                     <div>
                         <button type="submit">Cadastrar</button>
-                    </div>
-                    <div th:text="${errorPassword}">
-                        <p style="color: red;">As senhas não coincidem.</p>
-                    </div>
-                    <div th:text="${errorEmail}">
-                        <p style="color: red;">Esse email já está em uso. Por favor escolha outro.</p>
                     </div>
                 </form>
             </div>

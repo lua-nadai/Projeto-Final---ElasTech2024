@@ -40,6 +40,11 @@
                 <p>Digite seu e-mail e senha:</p>
             </div>
             <div class="form-login-container">
+                <div th:if="${error != null and error != ''}" class="warning">
+                    <div th:text="${error}">
+                        <p>Usuário ou senha inválidos.</p>
+                    </div>
+                </div>
                 <form action="/login-user" method="POST">
                     <div>
                         <label>E-mail:</label>
@@ -49,16 +54,9 @@
                     </div>
                     <div class="btn-login-container">
                         <button type="submit">Entrar</button>
-                        <div th:text="${error}">
-                            <p style="color: red;">Usuário ou senha inválidos.</p>
-                        </div>
                         <a href="/reset-password" class="button">Esqueci minha senha</a>
-                        <br>
-                        <br>
                     </div>
-        </form>
                 </form>
-
             </div>
         </section>
     </article>

@@ -12,9 +12,6 @@ public class Status {
     @Column
     private String name;
 
-    @Column
-    private String statusName;
-
     public int getId() {
         return id;
     }

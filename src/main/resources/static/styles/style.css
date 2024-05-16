@@ -174,7 +174,6 @@ nav {
     }
 }
 
-<<<<<<< HEAD
 /* Page Admin */
 
 #admin {
@@ -234,9 +233,7 @@ nav {
       height: 100vh;
     }
 }
-=======
 /* Page Login */
->>>>>>> e9c83456ee71148ff0e63dbfbffc9f62a625c068
 
 #login {
     height: calc(100vh - 70px - 115px);

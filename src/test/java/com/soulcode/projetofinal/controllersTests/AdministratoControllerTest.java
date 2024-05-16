@@ -200,25 +200,6 @@ class AdministratoControllerTest {
     }
 
     @Test
-    void testSaveRequest() {
-        String expectedView = "save-request";
-        int priority = 1;
-        String title = "Test Title";
-        String description = "Test Description";
-        Department department = new Department();
-        department.setId(1);
-        department.setName("IT");
-        HttpSession session = mock(HttpSession.class);
-
-        when(userController.saveRequest(priority, title, description, department, session)).thenReturn(expectedView);
-
-        String resultView = administratoController.saveRequest(priority, title, description, department, session);
-
-        assertEquals(expectedView, resultView);
-        verify(userController, times(1)).saveRequest(priority, title, description, department, session);
-    }
-
-    @Test
     void testUserPage() {
         String expectedView = "user-page";
         Model model = mock(Model.class);

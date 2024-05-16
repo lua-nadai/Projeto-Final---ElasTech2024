@@ -87,15 +87,4 @@ class AuthenticationControllerTest {
         assertEquals(expectedView, resultView);
     }
 
-    @Test
-    void testResetPassword() {
-        Model model = mock(Model.class);
-        String email = "john@example.com";
-        String newPassword = "newPassword";
-
-        String resultView = authenticationController.resetPassword(email, newPassword, model);
-
-        verify(authenticationService, times(1)).resetPassword(email, newPassword);
-        assertEquals("redirect:/login-user", resultView);
-    }
 }

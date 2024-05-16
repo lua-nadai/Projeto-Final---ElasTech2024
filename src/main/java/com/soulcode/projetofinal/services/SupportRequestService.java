@@ -1,6 +1,7 @@
 package com.soulcode.projetofinal.services;
 
 import com.soulcode.projetofinal.models.*;
+import com.soulcode.projetofinal.repositories.PriorityRepository;
 import com.soulcode.projetofinal.repositories.SupportRequestRepository;
 import com.soulcode.projetofinal.repositories.PersonRepository;
 import com.soulcode.projetofinal.repositories.StatusRepository;
@@ -26,6 +27,9 @@ public class SupportRequestService {
 
     @Autowired
     private StatusRepository statusRepository;
+
+    @Autowired
+    private PriorityRepository priorityRepository;
 
     public Person getLoggedTechnician(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -114,7 +118,18 @@ public class SupportRequestService {
             }
         }
         return supportRequestsAvaible;
+    }
 
+    public List<SupportRequest> findFinishedRequests(){
+        List<SupportRequest> supportRequests = supportRequestRepository.findAll();
+        List<SupportRequest> supportRequestsFinished = new ArrayList<>();
+
+        for (SupportRequest request : supportRequests) {
+            if (request.getStatus().getName().equals("Finalizado")) {
+                supportRequestsFinished.add(request);
+            }
+        }
+        return supportRequestsFinished;
     }
 
     public List<SupportRequest> findRequestsInProgress(){
@@ -122,13 +137,13 @@ public class SupportRequestService {
         List<SupportRequest> supportRequestsInProgress = new ArrayList<>();
 
         for (SupportRequest request : supportRequests) {
-            if (!request.getStatus().getName().equals("Aguardando Técnico")) {
+            String statusName = request.getStatus().getName();
+            if (!statusName.equals("Aguardando Técnico") && !statusName.equals("Finalizado")) {
                 supportRequestsInProgress.add(request);
             }
         }
 
         return supportRequestsInProgress;
-
     }
 
     public List<SupportRequest> findRequestsInProgressByTech(int techId){

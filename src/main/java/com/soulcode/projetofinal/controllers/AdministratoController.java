@@ -202,9 +202,11 @@ public class AdministratoController {
     public String adminPage(@RequestParam(required = false) String name, Model model, HttpServletRequest request) {
         List<SupportRequest> availableRequests = supportRequestService.findAvaibleRequests();
         List<SupportRequest> requestsInProgess = supportRequestService.findRequestsInProgress();
+        List<SupportRequest> requestsFinished = supportRequestService.findFinishedRequests();
 
         model.addAttribute("availableRequests", availableRequests);
         model.addAttribute("requestsInProgess", requestsInProgess);
+        model.addAttribute("requestsFinished", requestsFinished);
         model.addAttribute("name", name);
 
         return "admin-page";

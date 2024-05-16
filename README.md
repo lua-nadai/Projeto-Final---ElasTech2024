@@ -24,3 +24,31 @@ Neste projeto, desenvolvemos a interface e rotas para um sistema de chamados té
 
 ## Tela de Administrador'👩🏽‍💻👨🏽‍💻
 • Este painel oferece uma visão abrangente do uso do sistema, fornecendo dados essenciais, como o número de chamados em aberto, em execução e aguardando. Além disso, permite o gerenciamento de elementos-chave do sistema, como os setores da empresa e os tipos de prioridade. Isso possibilita o cadastramento de informações vitais, garantindo flexibilidade e adaptabilidade ao ambiente corporativo.
+
+
+## Modelo ER
+
+![SoulDesk - Modelo ER](https://i.imgur.com/fPOYC9g.png)
+
+
+## Rodando localmente
+
+- Clone o projeto
+
+```bash
+  git clone https://github.com/lua-nadai/SoulDesk_ElasTech2024.git
+```
+
+- Certifique-se de ter o Java, Spring Framework e MySQL Workbench instalados em sua máquina.
+- Abra o projeto em sua IDE preferida.
+- Execute o "ProjetoFinalApplication.java" 
+- Acesse a aplicação através do navegador pela url "http://localhost:8080".
+
+
+
+## Desenvolvedoras
+
+ - [Janaina Taveres](https://github.com/tavaresjana)
+ - [Karen Nogueira](https://github.com/Knogueira)
+ - [Luana Nadai](https://github.com/lua-nadai)
+ - [Myriam Liston](https://github.com/MyListon)

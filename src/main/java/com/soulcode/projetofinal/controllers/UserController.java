@@ -1,5 +1,6 @@
 package com.soulcode.projetofinal.controllers;
 
+import com.soulcode.projetofinal.models.Priority;
 import com.soulcode.projetofinal.models.SupportRequest;
 import com.soulcode.projetofinal.models.Department;
 import com.soulcode.projetofinal.models.Person;
@@ -74,7 +75,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user-request-details", method = RequestMethod.POST)
-    public String saveRequest(@RequestParam("priority") int priority,
+    public String saveRequest(@RequestParam("priority") Priority priority,
                               @RequestParam("title") String title,
                               @RequestParam("description") String description,
                               @RequestParam("department") Department department,

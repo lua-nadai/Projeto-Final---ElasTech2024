@@ -46,7 +46,7 @@
                         <td th:text="${supportRequest.startDate}"></td>
                         <td th:text="${supportRequest.title}"></td>
                         <td th:text="${supportRequest.department.name}"></td>
-                        <td th:text="${supportRequest.priority}"></td>
+                        <td th:text="${supportRequest.priority.name}"></td>
                         <td th:text="${supportRequest.description}"></td>
                         <td>
                             <form class="form" action="/change-status" method="post">
@@ -84,7 +84,7 @@
                         <td th:text="${supportRequest.startDate}"></td>
                         <td th:text="${supportRequest.title}"></td>
                         <td th:text="${supportRequest.department.name}"></td>
-                        <td th:text="${supportRequest.priority}"></td>
+                        <td th:text="${supportRequest.priority.name}"></td>
                         <td th:text="${supportRequest.description}"></td>
                         <td>
                             <form class="form" action="/change-status" method="post">

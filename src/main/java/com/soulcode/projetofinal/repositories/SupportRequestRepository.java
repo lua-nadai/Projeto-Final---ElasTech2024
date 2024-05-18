@@ -29,4 +29,6 @@ public interface SupportRequestRepository extends JpaRepository<SupportRequest, 
 
     void deleteByDepartmentId(int departmentId);
 
+    void deleteByPriorityId(int priorityId);
+
 }

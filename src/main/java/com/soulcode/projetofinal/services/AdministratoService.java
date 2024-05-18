@@ -92,7 +92,9 @@ public class AdministratoService {
         priorityRepository.save(priority);
     }
 
+    @Transactional
     public void deletePriority(int priorityId) {
+        supportRequestRepository.deleteByPriorityId(priorityId);
         priorityRepository.deleteById(priorityId);
     }
 

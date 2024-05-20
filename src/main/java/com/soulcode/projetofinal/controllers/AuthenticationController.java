@@ -22,8 +22,6 @@ public class AuthenticationController {
     @Autowired
     AuthenticationService authenticationService;
 
-
-
     @RequestMapping(value = "/register-user", method = RequestMethod.POST)
     public String save(@RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam String confirmPassword, @RequestParam int typeId, Model model) {
 
@@ -92,52 +90,4 @@ public class AuthenticationController {
        // authenticationService.resetPassword(email, newPassword);
        // return "redirect:/login-user";
     }
-
-//    public void requestPasswordReset(String email, HttpServletRequest request) {
-//        // Verificar se o e-mail fornecido está associado a um usuário existente
-//        Person user = personRepository.findByEmail(email);
-//        if (user != null) {
-//            // Gerar um token de redefinição de senha único
-//            String resetToken = UUID.randomUUID().toString();
-//            // Armazenar o token de redefinição de senha no objeto usuário
-//            user.setResetToken(resetToken);
-//            personRepository.save(user);
-//            // Enviar um e-mail com o link de redefinição de senha
-//            String resetLink = request.getRequestURL().toString().replace("reset-password", "password-reset") + "?token=" + resetToken;
-//            // Aqui você precisaria chamar um serviço de e-mail para enviar o e-mail
-//            // Exemplo: emailService.sendResetPasswordEmail(user.getEmail(), resetLink);
-//        }
-//    }
-
-//    @RequestMapping(value = "/password-reset", method = RequestMethod.GET)
-//    public String showPasswordResetForm(@RequestParam String token, Model model) {
-//        // Verificar se o token de redefinição de senha é válido
-//        Person user = personRepository.findByResetToken(token);
-//        if (user == null) {
-//            // Redirecionar para uma página de erro ou página de token inválido
-//            return "redirect:/password-reset-error";
-//        }
-//        // Passar o token para a página de redefinição de senha
-//        model.addAttribute("token", token);
-//        return "password-reset-form"; // Página onde os usuários podem redefinir suas senhas
-//    }
-//
-//    @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
-//    public String resetPassword(@RequestParam String email, Model model, HttpServletRequest request) {
-//        // Verificar se o e-mail fornecido está associado a um usuário existente
-//        Person user = personRepository.findByEmail(email);
-//        if (user != null) {
-//            // Gerar um token de redefinição de senha único
-//            String resetToken = UUID.randomUUID().toString();
-//            // Armazenar o token de redefinição de senha no objeto usuário
-//            user.setResetToken(resetToken);
-//            personRepository.save(user);
-//            // Enviar um e-mail com o link de redefinição de senha
-//            String resetLink = request.getRequestURL().toString().replace("reset-password", "password-reset") + "?token=" + resetToken;
-//            // Aqui você precisaria chamar um serviço de e-mail para enviar o e-mail
-//            // Exemplo: emailService.sendResetPasswordEmail(user.getEmail(), resetLink);
-//        }
-//        // Redirecionar para uma página de confirmação de solicitação de redefinição de senha
-//        return "redirect:/password-reset-request-sent";
-//    }
 }

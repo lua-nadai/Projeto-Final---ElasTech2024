@@ -284,7 +284,6 @@ nav {
 }
 
 /* Page Reset Password */
-
 #reset-password {
     height: calc(100vh - 70px - 115px);
     display: flex;
@@ -385,7 +384,6 @@ nav {
 }
 
 /* Page Register */
-
 #register {
     height: calc(100vh - 70px - 115px);
     display: flex;

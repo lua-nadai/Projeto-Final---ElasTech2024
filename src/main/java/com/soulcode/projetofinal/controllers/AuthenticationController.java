@@ -22,8 +22,6 @@ public class AuthenticationController {
     @Autowired
     AuthenticationService authenticationService;
 
-
-
     @RequestMapping(value = "/register-user", method = RequestMethod.POST)
     public String save(@RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam String confirmPassword, @RequestParam int typeId, Model model) {
 

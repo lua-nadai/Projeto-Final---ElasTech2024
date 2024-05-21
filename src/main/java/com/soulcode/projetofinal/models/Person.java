@@ -25,9 +25,6 @@ public class Person {
     @JoinColumn(name = "type_id")
     private Type type;
 
-
-
-
     public int getId() {
         return id;
     }

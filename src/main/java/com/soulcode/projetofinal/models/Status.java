@@ -11,8 +11,6 @@ public class Status {
     @Column
     private String name;
 
-
-
     public int getId() {
         return id;
     }

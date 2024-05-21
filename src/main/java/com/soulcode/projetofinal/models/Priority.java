@@ -49,6 +49,5 @@ public class Priority {
         return Objects.hash(id, name);
     }
 
-
 }
 

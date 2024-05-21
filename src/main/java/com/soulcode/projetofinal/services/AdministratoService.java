@@ -103,7 +103,7 @@ public class AdministratoService {
     }
 
     public int getInProgressRequestsCount() {
-        return supportRequestRepository.countInProgressRequests();
+        return supportRequestRepository.countInProgressRequests() + supportRequestRepository.countAnotherDepartmentRequests();
     }
 
     public int getAnotherDepartmentRequestsCount() {
